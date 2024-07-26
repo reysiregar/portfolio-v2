@@ -93,14 +93,14 @@ export default {
 .paraf {
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
-  line-clamp: 3; /* Tambahkan properti standar line-clamp */
+  line-clamp: 3;
   text-overflow: ellipsis;
   overflow: hidden;
 }
 @media (min-width: 768px) { 
   .paraf {
     display: -webkit-box;
-    display: box; /* Tambahkan properti standar display */
+    display: flex;
   }
 }
 @keyframes fadeZoomUp {
