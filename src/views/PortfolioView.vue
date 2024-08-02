@@ -12,6 +12,15 @@ export default {
           tech: 'VueJS 3, Tailwind',
           github: 'https://github.com/reysiregar/portfolio-v2',
           demo: 'https://reysiregar-portfolio-v2.vercel.app/'
+        },
+        {
+          id: 2,
+          name: 'Christmas Invitation',
+          imageUrl: 'portfolio_v1',
+          status: 'Website of Christmas Invitation for My Church, giving user the Event details like location, date & time, etc. (Private Project)',
+          tech: 'JavaScript, Sassy CSS',
+          github: 'https://github.com/reysiregar/portfolio-v2',
+          demo: 'https://christmas-website-pdd.vercel.app'
         }
       ]
     };
