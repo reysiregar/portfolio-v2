@@ -7,7 +7,7 @@ export default {
         {
           id: 1,
           name: 'Personal Website',
-          imageUrl: 'portfolio_v2',
+          imageUrl: 'portfolio-v2',
           status: 'My personal website, I created this website to display my profile, skills and projects. As well as my place to try new technology.',
           tech: 'VueJS 3, Tailwind',
           github: 'https://github.com/reysiregar/portfolio-v2',
@@ -16,7 +16,7 @@ export default {
         {
           id: 2,
           name: 'Christmas Invitation',
-          imageUrl: 'portfolio_v1',
+          imageUrl: 'portfolio-v1',
           status: 'Website of Christmas Invitation for My Church, giving user the Event details like location, date & time, etc. (Private Project)',
           tech: 'JavaScript, Sassy CSS',
           github: 'https://github.com/reysiregar/portfolio-v2',
