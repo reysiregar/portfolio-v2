@@ -79,7 +79,7 @@ export default {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #ffdb70;
+  background: #add8e6;
   border-radius: 5px;
 }
 
@@ -119,7 +119,7 @@ nav a.router-link-exact-active::after {
   width: 100%;
   height: 4px;
   border-radius: 2px;
-  background-color: #ffdb70;
+  background-color: #add8e6;
 }
 
 nav a.router-link-exact-active:hover {
