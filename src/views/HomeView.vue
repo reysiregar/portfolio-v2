@@ -37,7 +37,7 @@ export default {
   name: 'HomeView',
   data() {
     return {
-      toRotate: ["Web Developer", "UI Designer", "Information System Student", "Tech Enthusiast", "Data Analyst", "Swifties"],
+      toRotate: ["Web Builder", "UI Designer", "Information System Student", "Tech Enthusiast", "Data Analyst", "Swifties"],
       period: 2000,
       txt: '',
       loopNum: 0,
@@ -141,9 +141,9 @@ body {
 }
 
 .pict {
-  box-shadow: 0px 0px 73px -9px rgba(255,219,112,0.44);
--webkit-box-shadow: 0px 0px 73px -9px rgba(255,219,112,0.44);
--moz-box-shadow: 0px 0px 73px -9px rgba(255,219,112,0.44);
+  box-shadow: 0px 0px 73px -9px rgba(173, 216, 230, 1);
+-webkit-box-shadow: 0px 0px 73px -9px rgba(173, 216, 230, 1);
+-moz-box-shadow: 0px 0px 73px -9px rgba(173, 216, 230, 1);
 }
 
 .fadein-up {

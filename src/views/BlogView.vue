@@ -79,12 +79,6 @@ export default {
   },
   components: {
     ArticleList
-  },
-  mounted() {
-    // Hapus panggilan API
-  },
-  methods: {
-    // Hapus metode API
   }
 }
 </script>
