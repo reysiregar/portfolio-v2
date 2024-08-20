@@ -8,19 +8,19 @@ export default {
           id: 1,
           name: 'HTML',
           imageUrl: 'https://cdn-icons-png.flaticon.com/512/1051/1051277.png',
-          status: 'Advanced'
+          status: 'Beginner'
         },
         {
           id: 2,
           name: 'CSS',
           imageUrl: 'https://cdn-icons-png.flaticon.com/512/732/732190.png',
-          status: 'Advanced'
+          status: 'Beginner'
         },
         {
           id: 3,
           name: 'Javascript',
           imageUrl: 'https://cdn.icon-icons.com/icons2/2415/PNG/512/javascript_original_logo_icon_146455.png',
-          status: 'Advanced'
+          status: 'Beginner'
         },
         {
           id: 4,
@@ -42,12 +42,6 @@ export default {
         },
         {
           id: 7,
-          name: 'Bootstrap',
-          imageUrl: 'https://getbootstrap.com/docs/5.2/assets/brand/bootstrap-logo-shadow.png',
-          status: 'Beginner'
-        },
-        {
-          id: 8,
           name: 'ReactJS',
           imageUrl: 'https://cdn4.iconfinder.com/data/icons/logos-3/600/React.js_logo-512.png',
           status: 'Beginner'
@@ -71,12 +65,6 @@ export default {
           name: 'NPM',
           imageUrl: 'https://cdn.iconscout.com/icon/free/png-256/free-npm-3-1175132.png',
           status: 'Package Manager'
-        },
-        {
-          id: 4,
-          name: 'MySQL',
-          imageUrl: 'https://cdn-icons-png.flaticon.com/512/5968/5968313.png',
-          status: 'Database'
         },
       ]
     };
@@ -104,17 +92,15 @@ export default {
         </div>
         <div class="md:w-7/12">
           <p class="mb-3 md:mb-7 fadein-left fadeins-1">
-            &nbsp; &nbsp; &nbsp; Hi everyone! My name is Reynaldi Wiratama Siregar. I'm a web developer from Bekasi, West Java, with
-            one year of experience in back-end web development.
+            &nbsp; &nbsp; &nbsp; Hi everyone! My name is Reynaldi Wiratama Siregar. I'm a web builder from Bekasi, West Java, with
+            half a year of experience in website development.
             I really enjoy what I do. In my opinion, creating programs is not just a job but also an art with
             aesthetic value.
           </p>
           <p class="mb-3 fadein-left fadeins-2">
-            &nbsp; &nbsp; &nbsp; My job is to build websites that are functional, user-friendly, and attractive.
-            Additionally, I provide a personal touch to your product to ensure that the website captures attention and is
-            easy to use.
-            My goal is to convey your message and identity in the most creative way. If you are interested in hiring me,
-            please contact me through the listed contact information.
+            &nbsp; &nbsp; &nbsp; Building websites that are functional, user-friendly, and visually appealing is more than just work for me—it is my hobby and passion.
+            I love adding a personal touch to every project to ensure that each website not only stands out but also offers an effortless user experience.
+            I am excited to continue giving my best to future clients, bringing their visions to life in the most creative and effective way possible.
           </p>
         </div>
 
