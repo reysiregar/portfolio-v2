@@ -2,7 +2,7 @@
   <main
     class="mt-10 md:mt-1 flex flex-col-reverse gap-8 items-center md:flex-row md:gap-16 md:justify-center min-h-[65vh] md:min-h-[80vh]">
     <div class="space-y-2 text-center md:text-left px-10">
-      <p class="text-amber-200">Hello World, I'm</p>
+      <p class="text-blue-200">Hello World, I'm</p>
       <h1 class="text-4xl font-bold md:text-5xl text-white fadein-up">Reynaldi Siregar</h1>
       <div class="py-2">
         <h1
@@ -16,7 +16,7 @@
       <a
         :href="resumePath"
         download="Resume_Reynaldi_Wiratama_Siregar.pdf"
-        class="fadein-bot fade-500 flex items-center py-2 px-4 mx-auto text-sm font-medium rounded-lg border transition duration-300 md:py-2.5 md:px-5 md:mx-0 text-amber-200 border-amber-200 hover:bg-amber-200 hover:bg-opacity-10 bg-transparent focus:outline-none w-fit">
+        class="fadein-bot fade-500 flex items-center py-2 px-4 mx-auto text-sm font-medium rounded-lg border transition duration-300 md:py-2.5 md:px-5 md:mx-0 text-blue-200 border-blue-200 hover:bg-blue-200 hover:bg-opacity-10 bg-transparent focus:outline-none w-fit">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="mr-2 w-4 h-4">
           <path fill-rule="evenodd"
             d="M5.625 1.5H9a3.75 3.75 0 013.75 3.75v1.875c0 1.036.84 1.875 1.875 1.875H16.5a3.75 3.75 0 013.75 3.75v7.875c0 1.035-.84 1.875-1.875 1.875H5.625a1.875 1.875 0 01-1.875-1.875V3.375c0-1.036.84-1.875 1.875-1.875zm5.845 17.03a.75.75 0 001.06 0l3-3a.75.75 0 10-1.06-1.06l-1.72 1.72V12a.75.75 0 00-1.5 0v4.19l-1.72-1.72a.75.75 0 00-1.06 1.06l3 3z"
@@ -27,7 +27,7 @@
         </svg>Download Resume</a>
     </div>
     <div class="flex justify-center md:justify-start fadein-right"><img alt="avatar" fetchpriority="high" width="300" height="300" decoding="async" data-nimg="1"
-        class="w-10/12 md:h-auto rounded-full border-4 border-amber-200 pict" src="/img/profile.jpg">
+        class="w-10/12 md:h-auto rounded-full border-4 border-blue-200 pict" src="/img/profile.jpg">
     </div>
   </main>
 </template>

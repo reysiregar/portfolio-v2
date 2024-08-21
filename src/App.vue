@@ -6,7 +6,7 @@
     <nav class="max-w-7xl px-5 md:fixed top-0 z-[98] w-screen backdrop-blur-md bg-[#121212] bg-opacity-80">
       <div class="container mx-auto flex flex-wrap items-center justify-between">
         <button @click="redirectToHome" class="flex">
-          <span class="self-center text-lg text-[#add8e6] font-semibold whitespace-nowrap fadein-bot hover:text-amber-100">ReynaldiSiregar();</span>
+          <span class="self-center text-lg text-[#add8e6] font-semibold whitespace-nowrap fadein-bot hover:text-blue-100">ReynaldiSiregar();</span>
         </button>
         <div class="flex md:order-2 fadein-bot">
           <a href="https://github.com/reysiregar"><img class="w-9 rounded-full" src="https://seeklogo.com/images/G/github-logo-2E3852456C-seeklogo.com.png" alt="github"></a>
@@ -69,8 +69,8 @@ export default {
 }
 
 ::-webkit-scrollbar {
-  width: 5px; /* for vertical scrollbar */
-  height: 5px; /* for horizontal scrollbar */
+  width: 5px;
+  height: 5px;
 }
 
 ::-webkit-scrollbar-track {
