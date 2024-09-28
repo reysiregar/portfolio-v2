@@ -45,6 +45,12 @@ export default {
           name: 'ReactJS',
           imageUrl: 'https://cdn4.iconfinder.com/data/icons/logos-3/600/React.js_logo-512.png',
           status: 'Beginner'
+        },
+        {
+          id: 8,
+          name: 'Canva',
+          imageUrl: 'https://www.canva.com/favicon.ico',
+          status: 'Advanced'
         }
       ],
       tools: [
@@ -65,6 +71,12 @@ export default {
           name: 'NPM',
           imageUrl: 'https://cdn.iconscout.com/icon/free/png-256/free-npm-3-1175132.png',
           status: 'Package Manager'
+        },
+        {
+          id: 4,
+          name: 'Vercel',
+          imageUrl: 'https://vercel.com/favicon.ico',
+          status: 'Deployment'
         },
       ]
     };
