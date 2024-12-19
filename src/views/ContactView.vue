@@ -1,163 +1,255 @@
 <template>
-    <div class="contact-container fade-zoom-up">
-      <h1>Let's get in touch! 👋😎</h1>
-  
-      <form @submit.prevent="sendEmail" class="contact-form">
-        <div class="form-group">
-          <label for="name">Name:</label>
-          <input type="text" id="name" v-model="form.name" required>
+  <transition name="fadeZoomOut">
+    <section class="contact fade-zoom-out">
+      <div class="container">
+        <!-- Page Title -->
+        <h1 class="contact-title">Let's Connect</h1>
+        <p class="contact-description">
+          Send me a message and I'll get back to you soon.
+        </p>
+        <!-- Contact Form -->
+        <form class="contact-form" @submit.prevent="handleSubmit">
+          <!-- Input Fields -->
+          <div class="input-wrapper">
+            <input
+              v-model="formData.name"
+              type="text"
+              placeholder="Your Name"
+              class="input-field"
+              required
+            />
+          </div>
+          <div class="input-wrapper">
+            <input
+              v-model="formData.email"
+              type="email"
+              placeholder="Your Email"
+              class="input-field"
+              required
+            />
+          </div>
+          <div class="input-wrapper">
+            <textarea
+              v-model="formData.message"
+              rows="4"
+              placeholder="Your Message"
+              class="input-field textarea"
+              required
+            ></textarea>
+          </div>
+          <!-- Submit Button -->
+          <button type="submit" class="submit-btn">Send Message</button>
+        </form>
+
+        <!-- Social Media Links -->
+        <div class="social-links">
+          <a href="https://t.me/vionite" target="_blank" class="social-icon">
+            <i class="fab fa-telegram"></i>
+          </a>
+          <a href="https://instagram.com/reysiregars" target="_blank" class="social-icon">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="https://wa.me/+6285179986368" target="_blank" class="social-icon">
+            <i class="fab fa-whatsapp"></i>
+          </a>
         </div>
-        <div class="form-group">
-          <label for="message">Message:</label>
-          <textarea id="message" v-model="form.message" required></textarea>
-        </div>
-        <button type="submit" class="btn-submit">Send Email</button>
-      </form>
-  
-      <h2>Or Contact Me on WhatsApp</h2>
-      <button @click="openWhatsApp" class="btn-whatsapp">Chat via WhatsApp</button>
-    </div>
-  </template>
-  
-  <script>
-  export default {
-    data() {
-      return {
-        form: {
-          name: '',
-          message: ''
-        },
-        whatsappNumber: '6285179986368',
-      }
-    },
-    computed: {
-      whatsappLink() {
-        return `https://wa.me/${this.whatsappNumber}?text=Hello%20Reynaldi,%20I%20would%20like%20to%20contact%20you!`;
-      }
-    },
-    methods: {
-      sendEmail() {
-        const subject = encodeURIComponent("Portfolio Inquiry from " + this.form.name);
-        const body = encodeURIComponent(this.form.message);
-        const mailtoLink = `mailto:reysiregar65@gmail.com?subject=${subject}&body=${body}`;
-        window.location.href = mailtoLink;
-      },
-      openWhatsApp() {
-        window.open(this.whatsappLink, "_blank");
+      </div>
+    </section>
+  </transition>
+</template>
+
+<script>
+export default {
+  name: "ContactView",
+  data() {
+    return {
+      formData: {
+        name: '',
+        email: '',
+        message: ''
       }
     }
-  }
-  </script>
-  
-  <style scoped>
-  .contact-container {
-    max-width: 600px;
-    margin: 40px auto;
-    padding: 20px;
-    background-color: #1d1d1d;
-    border-radius: 20px;
-    border: 2px solid transparent;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    color: #ffffff;
-    position: relative;
-    transition: border 0.3s ease;
-    border: 2px solid #add8e6; 
-    box-shadow: 0 0 15px #add8e6; 
-  }
-  
-  h1, h2 {
-    text-align: center;
-    color: #f1f1f1;
-    margin-bottom: 20px;
-  }
-  
-  .contact-form {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .form-group {
-    margin-bottom: 15px;
-  }
-  
-  label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 5px;
-  }
-  
-  input[type="text"],
-  textarea {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 20px;
-    font-size: 16px;
-    background-color: #2d2d2d;
-    color: #ffffff;
-    transition: border-color 0.3s;
-  }
-  
-  input:focus,
-  textarea:focus {
-    outline: none;
-    border-color: #add8e6;
-    box-shadow: 0 0 8px #add8e6;
-  }
-  
-  textarea {
-    height: auto;
-    resize: vertical;
-  }
-  
-  .btn-submit {
-    padding: 12px 20px;
-    background-color: #add8e6; 
-    color: #282828; 
-    border: none;
-    border-radius: 20px;
-    font-size: 16px;
-    font-weight: bold; 
-    cursor: pointer;
-    margin-top: 10px;
-    margin-bottom: 30px;
-    transition: background-color 0.3s;
-  }
-  
-  .btn-submit:hover {
-    background-color: #8db2c3;
-  }
-  
-  .btn-whatsapp {
-    padding: 12px 20px;
-    background-color: #25d366; 
-    color: #282828; 
-    border: none;
-    border-radius: 20px;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    display: block;
-    margin: 0 auto;
-    transition: background-color 0.3s;
-  }
-  
-  .btn-whatsapp:hover {
-    background-color: #1ebe57;
-  }
-  
-  @keyframes fadeZoomUp {
-    0% {
-      opacity: 0;
-      transform: scale(0.5) translateY(50px);
-    }
-    100% {
-      opacity: 1;
-      transform: scale(1) translateY(0);
+  },
+  methods: {
+    handleSubmit() {
+      const yourEmail = 'reynaldisiregar24@yahoo.com';
+      const subject = `Message from ${this.formData.name}`;
+      const body = `Name: ${this.formData.name}
+Email: ${this.formData.email}
+
+Message:
+${this.formData.message}`;
+
+      const mailtoUrl = `mailto:${yourEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      
+      // Open email client
+      window.location.href = mailtoUrl;
+
+      // Clear the form by resetting formData
+      this.formData = {
+        name: '',
+        email: '',
+        message: ''
+      };
+
+      // Refresh the page after a short delay (to ensure email client opens)
+      setTimeout(() => {
+        window.location.reload();
+      }, 100);
     }
   }
-  
-  .fade-zoom-up {
-    animation: fadeZoomUp 1s ease-in-out;
+};
+</script>
+
+<style scoped>
+@keyframes fadeZoomOut {
+  0% {
+    opacity: 0;
+    transform: scale(0.8) translateY(30px);
   }
-  </style>
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.fade-zoom-out {
+  animation: fadeZoomOut 0.8s ease-in-out;
+}
+
+.contact {
+  background: #141414;
+  color: #ffffff;
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+.container {
+  max-width: 600px;
+  width: 100%;
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.contact-title {
+  font-size: 2.5rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #f5f5f5;
+}
+
+.contact-description {
+  font-size: 1rem;
+  margin-bottom: 30px;
+  color: #bbbbbb;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.input-wrapper {
+  position: relative;
+}
+
+.input-field {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid transparent;
+  background-color: #1f1f1f;
+  color: #ffffff;
+  font-size: 1rem;
+  border-radius: 20px;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.input-field:hover,
+.input-field:focus {
+  border-color: #1e90ff;
+  box-shadow: 0 0 8px rgba(30, 144, 255, 0.5);
+  background-color: #222;
+}
+
+.input-field::placeholder {
+  color: #777;
+}
+
+.textarea {
+  resize: none;
+}
+
+.submit-btn {
+  background-color: #1e90ff;
+  color: #ffffff;
+  border: none;
+  padding: 12px;
+  border-radius: 20px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.submit-btn:hover {
+  background-color: #1c7cd6;
+  transform: translateY(-3px);
+}
+
+.submit-btn:active {
+  transform: translateY(1px);
+}
+
+/* Social Media Links Styling */
+.social-links {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.social-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background-color: #1e90ff;
+  color: white;
+  font-size: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.social-icon:hover {
+  background-color: #1c7cd6;
+  transform: translateY(-3px);
+}
+
+.social-icon:active {
+  transform: translateY(1px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .contact-title {
+    font-size: 2rem;
+  }
+  
+  .contact-description {
+    font-size: 0.9rem;
+  }
+  
+  .input-field {
+    font-size: 0.9rem;
+    padding: 8px 10px;
+  }
+}
+</style>
