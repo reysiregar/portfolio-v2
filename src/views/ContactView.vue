@@ -43,14 +43,17 @@
 
         <!-- Social Media Links -->
         <div class="social-links">
+          <a href="https://wa.me/+6285179986368" target="_blank" class="social-icon">
+            <i class="fab fa-whatsapp"></i>
+          </a>
           <a href="https://t.me/vionite" target="_blank" class="social-icon">
             <i class="fab fa-telegram"></i>
           </a>
           <a href="https://instagram.com/reysiregars" target="_blank" class="social-icon">
             <i class="fab fa-instagram"></i>
           </a>
-          <a href="https://wa.me/+6285179986368" target="_blank" class="social-icon">
-            <i class="fab fa-whatsapp"></i>
+          <a href="https://www.linkedin.com/in/reynaldi-wiratama-siregar-490b8b261?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BBQFDke3MTbSmGNRFQKXSSQ%3D%3D" target="_blank" class="social-icon">
+            <i class="fab fa-linkedin"></i>
           </a>
         </div>
       </div>
