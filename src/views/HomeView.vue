@@ -11,7 +11,7 @@
           <span class="wrap">{{ txt }}</span>
         </h1>
       </div>
-      <p class="text-white pr-4 fade-in-from-left">Welcome to My personal website. <span class="wave">👋🏼</span></p>
+      <p class="text-white pr-4 fade-in-from-left">Welcome to My portfolio website. <span class="wave">👋🏼</span></p>
       <br>
       <a
         :href="resumePath"

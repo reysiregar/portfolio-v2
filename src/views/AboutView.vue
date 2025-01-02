@@ -104,8 +104,8 @@ export default {
         </div>
         <div class="md:w-7/12">
           <p class="mb-3 md:mb-7 fadein-left fadeins-1">
-            &nbsp; &nbsp; &nbsp; Hi everyone! My name is Reynaldi Siregar. I'm a front-end web developer from Bekasi, West Java, with
-            half a year of experience in website development.
+            &nbsp; &nbsp; &nbsp; Hi everyone! My name is Reynaldi Siregar. I'm a Beginner Front-End Web Developer from Bekasi, Indonesia, with
+            a year of experience in website development.
             I really enjoy what I do. In my opinion, creating programs is not just a job but also an art with
             aesthetic value.
           </p>
