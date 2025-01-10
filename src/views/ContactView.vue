@@ -20,15 +20,6 @@
             />
           </div>
           <div class="input-wrapper">
-            <input
-              v-model="formData.email"
-              type="email"
-              placeholder="Your Email"
-              class="input-field"
-              required
-            />
-          </div>
-          <div class="input-wrapper">
             <textarea
               v-model="formData.message"
               rows="4"
@@ -38,7 +29,13 @@
             ></textarea>
           </div>
           <!-- Submit Button -->
-          <button type="submit" class="submit-btn">Send Message</button>
+          <button 
+            type="submit" 
+            class="submit-btn"
+            :disabled="isLoading"
+          >
+            {{ isLoading ? 'Sending...' : 'Send Message' }}
+          </button>
         </form>
 
         <!-- Social Media Links -->
@@ -52,7 +49,7 @@
           <a href="https://instagram.com/reysiregars" target="_blank" class="social-icon">
             <i class="fab fa-instagram"></i>
           </a>
-          <a href="https://www.linkedin.com/in/reynaldi-wiratama-siregar-490b8b261?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BBQFDke3MTbSmGNRFQKXSSQ%3D%3D" target="_blank" class="social-icon">
+          <a href="https://www.linkedin.com/in/reynaldi-wiratama-siregar-490b8b261" target="_blank" class="social-icon">
             <i class="fab fa-linkedin"></i>
           </a>
         </div>
@@ -62,49 +59,56 @@
 </template>
 
 <script>
+import emailjs from '@emailjs/browser';
+
 export default {
   name: "ContactView",
   data() {
     return {
       formData: {
         name: '',
-        email: '',
         message: ''
-      }
+      },
+      isLoading: false
     }
   },
   methods: {
-    handleSubmit() {
-      const yourEmail = 'reynaldisiregar24@yahoo.com';
-      const subject = `Message from ${this.formData.name}`;
-      const body = `Name: ${this.formData.name}
-Email: ${this.formData.email}
+    async handleSubmit() {
+      try {
+        this.isLoading = true;
+        
+        const serviceId = 'service_4one86u';
+        const templateId = 'template_j67z1sb';
+        const publicKey = 'LHb8KM38rLlIKX-v0';
+        
+        const templateParams = {
+          from_name: this.formData.name,
+          message: this.formData.message,
+          to_name: 'Reynaldi',
+        };
 
-Message:
-${this.formData.message}`;
-
-      const mailtoUrl = `mailto:${yourEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-      
-      // Open email client
-      window.location.href = mailtoUrl;
-
-      // Clear the form by resetting formData
-      this.formData = {
-        name: '',
-        email: '',
-        message: ''
-      };
-
-      // Refresh the page after a short delay (to ensure email client opens)
-      setTimeout(() => {
-        window.location.reload();
-      }, 100);
+        await emailjs.send(serviceId, templateId, templateParams, publicKey);
+        
+        alert('Message sent successfully!');
+        
+        // Clear the form
+        this.formData = {
+          name: '',
+          message: ''
+        };
+      } catch (error) {
+        console.error('Error sending email:', error);
+        alert('Failed to send message. Please try again later.');
+      } finally {
+        this.isLoading = false;
+      }
     }
   }
 };
 </script>
 
 <style scoped>
+/* All styles remain the same as they were */
 @keyframes fadeZoomOut {
   0% {
     opacity: 0;
