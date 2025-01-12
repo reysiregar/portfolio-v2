@@ -1,15 +1,13 @@
 <template>
   <transition name="fadeZoomOut">
     <section class="contact fade-zoom-out">
+      <!-- Previous template code remains the same -->
       <div class="container">
-        <!-- Page Title -->
         <h1 class="contact-title">Let's Connect</h1>
         <p class="contact-description">
           Send me a message and I'll get back to you soon.
         </p>
-        <!-- Contact Form -->
         <form class="contact-form" @submit.prevent="handleSubmit">
-          <!-- Input Fields -->
           <div class="input-wrapper">
             <input
               v-model="formData.name"
@@ -28,7 +26,6 @@
               required
             ></textarea>
           </div>
-          <!-- Submit Button -->
           <button 
             type="submit" 
             class="submit-btn"
@@ -38,7 +35,6 @@
           </button>
         </form>
 
-        <!-- Social Media Links -->
         <div class="social-links">
           <a href="https://wa.me/+6285179986368" target="_blank" class="social-icon">
             <i class="fab fa-whatsapp"></i>
@@ -60,6 +56,7 @@
 
 <script>
 import emailjs from '@emailjs/browser';
+import Swal from 'sweetalert2';
 
 export default {
   name: "ContactView",
@@ -89,7 +86,15 @@ export default {
 
         await emailjs.send(serviceId, templateId, templateParams, publicKey);
         
-        alert('Message sent successfully!');
+        // Success message with SweetAlert2
+        await Swal.fire({
+          title: 'Success!',
+          text: 'Your message has been sent successfully.',
+          icon: 'success',
+          confirmButtonColor: '#1e90ff',
+          background: '#1f1f1f',
+          color: '#ffffff'
+        });
         
         // Clear the form
         this.formData = {
@@ -98,7 +103,15 @@ export default {
         };
       } catch (error) {
         console.error('Error sending email:', error);
-        alert('Failed to send message. Please try again later.');
+        // Error message with SweetAlert2
+        await Swal.fire({
+          title: 'Error!',
+          text: 'Failed to send message. Please try again later.',
+          icon: 'error',
+          confirmButtonColor: '#1e90ff',
+          background: '#1f1f1f',
+          color: '#ffffff'
+        });
       } finally {
         this.isLoading = false;
       }
@@ -108,7 +121,6 @@ export default {
 </script>
 
 <style scoped>
-/* All styles remain the same as they were */
 @keyframes fadeZoomOut {
   0% {
     opacity: 0;

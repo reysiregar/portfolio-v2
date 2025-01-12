@@ -2,7 +2,7 @@
   <main
     class="mt-10 md:mt-1 flex flex-col-reverse gap-8 items-center md:flex-row md:gap-16 md:justify-center min-h-[65vh] md:min-h-[80vh]">
     <div class="space-y-2 text-center md:text-left px-10">
-      <p class="text-blue-200">Hello World, I'm</p>
+      <p class="text-blue-200 fadein-up">Hello World, I'm</p>
       <h1 class="text-4xl font-bold md:text-5xl text-white fadein-up">Reynaldi Siregar</h1>
       <div class="py-2">
         <h1
@@ -37,7 +37,7 @@ export default {
   name: 'HomeView',
   data() {
     return {
-      toRotate: ["Web Builder", "UI Designer", "Information System Student", "Tech Enthusiast", "Data Analyst", "Swifties"],
+      toRotate: ["Beginner Front-End Dev", "Beginner UI Designer", "Information System Student", "Tech Enthusiast"],
       period: 2000,
       txt: '',
       loopNum: 0,
@@ -91,11 +91,17 @@ export default {
 <style>
 body {
   overflow-y: scroll;
-  overflow-x: hidden;
+  overflow-x: auto;
 }
 
-.typewrite>.wrap {
+.typewrite > .wrap {
   border-right: 0.08em solid #fff;
+  animation: blink-caret 1s ease-in-out infinite;
+}
+
+@keyframes blink-caret {
+  0%, 100% { border-color: transparent }
+  50% { border-color: #fff }
 }
 
 .wave {
@@ -141,9 +147,9 @@ body {
 }
 
 .pict {
-  box-shadow: 0px 0px 73px -9px rgba(173, 216, 230, 1);
--webkit-box-shadow: 0px 0px 73px -9px rgba(173, 216, 230, 1);
--moz-box-shadow: 0px 0px 73px -9px rgba(173, 216, 230, 1);
+  box-shadow: 0px 0px 40px -5px rgba(173, 216, 230, 1);
+-webkit-box-shadow: 0px 0px 40px -5px rgba(173, 216, 230, 1);
+-moz-box-shadow: 0px 0px 40px -5px rgba(173, 216, 230, 1);
 }
 
 .fadein-up {
@@ -225,6 +231,12 @@ body {
 }
 .fadein-3 {
   animation-delay: 600ms;
+}
+.fadein-4 {
+  animation-delay: 800ms;
+}
+.fadein-5 {
+  animation-delay: 1000ms;
 }
 .fade-500 {
   animation-delay: 500ms;

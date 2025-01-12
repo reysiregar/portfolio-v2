@@ -6,9 +6,9 @@ export default {
       items: [
         {
           id: 1,
-          name: 'Personal Website',
+          name: 'Portfolio Website',
           imageUrl: 'portfolio-v2',
-          status: 'My personal website, I created this website to display my profile, skills and projects. As well as my place to try new technology.',
+          status: 'I created my portfolio website to showcase my profile, skills, and projects, while also providing a space to implement and refine my web development expertise.',
           tech: 'VueJS 3, Tailwind',
           github: 'https://github.com/reysiregar/portfolio-v2',
           demo: 'https://reysiregar-portfolio-v2.vercel.app/'
@@ -17,8 +17,8 @@ export default {
           id: 2,
           name: 'Christmas Invitation',
           imageUrl: 'portfolio-v1',
-          status: 'Website of Christmas Invitation for My Church, giving user the Event details like location, date & time, etc. (Private Project)',
-          tech: 'JavaScript, Sassy CSS',
+          status: 'Website of Christmas Invitation for My Church, giving guest the Event details like location, date & time, etc. (Private Project)',
+          tech: 'JavaScript, SCSS',
           github: 'https://github.com/reysiregar/portfolio-v2',
           demo: 'https://christmas-website-pdd.vercel.app'
         }

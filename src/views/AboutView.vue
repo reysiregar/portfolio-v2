@@ -63,7 +63,7 @@ export default {
         {
           id: 2,
           name: 'GitHub',
-          imageUrl: 'https://cdn-icons-png.flaticon.com/512/25/25231.png',
+          imageUrl: 'https://img.icons8.com/?size=100&id=bVGqATNwfhYq&format=png&color=000000',
           status: 'Git Hosting'
         },
         {
