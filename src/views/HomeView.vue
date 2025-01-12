@@ -91,7 +91,7 @@ export default {
 <style>
 body {
   overflow-y: scroll;
-  overflow-x: auto;
+  overflow-x: hidden;
 }
 
 .typewrite > .wrap {
