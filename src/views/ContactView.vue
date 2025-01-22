@@ -4,9 +4,10 @@
       <div class="container">
         <h1 class="contact-title">Let's Connect</h1>
         <p class="contact-description">
-          Send me a message and I'll get back to you soon.
+          Send me a message and I'll get back to you soon.<br>
+          (one way communication, you will not receive a reply)
         </p>
-        <form class="contact-form" @submit.prevent="handleSubmit">
+        <form class="contact-form" @submit.prevent="showCaptcha">
           <div class="input-wrapper">
             <input
               v-model="formData.name"
@@ -25,14 +26,11 @@
               required
             ></textarea>
           </div>
-          
-          <!-- Add reCAPTCHA container -->
-          <div id="recaptcha-container" class="recaptcha-container"></div>
 
           <button 
             type="submit" 
             class="submit-btn"
-            :disabled="isLoading || !isCaptchaVerified"
+            :disabled="isLoading"
           >
             {{ isLoading ? 'Sending...' : 'Send Message' }}
           </button>
@@ -53,6 +51,17 @@
           </a>
         </div>
       </div>
+
+      <!-- Captcha Modal -->
+      <div v-if="showCaptchaModal" class="modal-overlay" @click.self="closeCaptchaModal">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2>Please verify you're human</h2>
+            <button class="close-btn" @click="closeCaptchaModal">&times;</button>
+          </div>
+          <div id="recaptcha-container" class="recaptcha-container"></div>
+        </div>
+      </div>
     </section>
   </transition>
 </template>
@@ -70,55 +79,42 @@ export default {
         message: ''
       },
       isLoading: false,
-      isCaptchaVerified: false,
-      captchaResponse: null,
+      showCaptchaModal: false,
       recaptchaWidget: null
     }
   },
-  mounted() {
-    // Initialize reCAPTCHA when component mounts
-    this.initRecaptcha();
-  },
   methods: {
-    initRecaptcha() {
-      // Wait for the reCAPTCHA script to load
-      if (window.grecaptcha) {
-        this.renderRecaptcha();
-      } else {
-        window.recaptchaCallback = this.renderRecaptcha;
+    showCaptcha() {
+      this.showCaptchaModal = true;
+      // Initialize reCAPTCHA when modal opens
+      this.$nextTick(() => {
+        if (window.grecaptcha) {
+          this.renderRecaptcha();
+        } else {
+          window.recaptchaCallback = this.renderRecaptcha;
+        }
+      });
+    },
+    closeCaptchaModal() {
+      this.showCaptchaModal = false;
+      // Reset reCAPTCHA if it exists
+      if (this.recaptchaWidget !== null) {
+        window.grecaptcha.reset(this.recaptchaWidget);
       }
     },
     renderRecaptcha() {
-      if (!this.recaptchaWidget) {
+      if (!this.recaptchaWidget && document.getElementById('recaptcha-container')) {
         this.recaptchaWidget = window.grecaptcha.render('recaptcha-container', {
           sitekey: '6LfdSr4qAAAAADmRnhI8yVjubblG6FAf6i-0bK2n',
           theme: 'dark',
-          callback: this.onCaptchaVerified,
-          'expired-callback': this.onCaptchaExpired
+          callback: this.onCaptchaVerified
         });
       }
     },
-    onCaptchaVerified(response) {
-      this.isCaptchaVerified = true;
-      this.captchaResponse = response;
-    },
-    onCaptchaExpired() {
-      this.isCaptchaVerified = false;
-      this.captchaResponse = null;
-    },
-    async handleSubmit() {
-      if (!this.isCaptchaVerified) {
-        await Swal.fire({
-          title: 'Error!',
-          text: 'Please complete the captcha verification.',
-          icon: 'error',
-          confirmButtonColor: '#1e90ff',
-          background: '#1f1f1f',
-          color: '#ffffff'
-        });
-        return;
-      }
-
+    async onCaptchaVerified(captchaResponse) {
+      // Close the modal
+      this.showCaptchaModal = false;
+      
       try {
         this.isLoading = true;
         
@@ -130,7 +126,7 @@ export default {
           from_name: this.formData.name,
           message: this.formData.message,
           to_name: 'Reynaldi',
-          'g-recaptcha-response': this.captchaResponse
+          'g-recaptcha-response': captchaResponse
         };
 
         await emailjs.send(serviceId, templateId, templateParams, publicKey);
@@ -144,13 +140,11 @@ export default {
           color: '#ffffff'
         });
         
-        // Clear form and reset captcha
+        // Clear form
         this.formData = {
           name: '',
           message: ''
         };
-        this.isCaptchaVerified = false;
-        window.grecaptcha.reset(this.recaptchaWidget);
         
       } catch (error) {
         console.error('Error sending email:', error);
@@ -311,6 +305,59 @@ export default {
   transform: translateY(1px);
 }
 
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.75);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: #1f1f1f;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 400px;
+  width: 90%;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.modal-header h2 {
+  font-size: 1.5rem;
+  color: #f5f5f5;
+  margin: 0;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  color: #bbbbbb;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0 5px;
+}
+
+.close-btn:hover {
+  color: #ffffff;
+}
+
+.recaptcha-container {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
 @media (max-width: 768px) {
   .contact-title {
     font-size: 2rem;
@@ -323,6 +370,10 @@ export default {
   .input-field {
     font-size: 0.9rem;
     padding: 8px 10px;
+  }
+
+  .modal-content {
+    width: 95%;
   }
 
   .recaptcha-container {
