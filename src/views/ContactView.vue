@@ -1,7 +1,6 @@
 <template>
   <transition name="fadeZoomOut">
     <section class="contact fade-zoom-out">
-      <!-- Previous template code remains the same -->
       <div class="container">
         <h1 class="contact-title">Let's Connect</h1>
         <p class="contact-description">
@@ -26,10 +25,14 @@
               required
             ></textarea>
           </div>
+          
+          <!-- Add reCAPTCHA container -->
+          <div id="recaptcha-container" class="recaptcha-container"></div>
+
           <button 
             type="submit" 
             class="submit-btn"
-            :disabled="isLoading"
+            :disabled="isLoading || !isCaptchaVerified"
           >
             {{ isLoading ? 'Sending...' : 'Send Message' }}
           </button>
@@ -66,27 +69,72 @@ export default {
         name: '',
         message: ''
       },
-      isLoading: false
+      isLoading: false,
+      isCaptchaVerified: false,
+      captchaResponse: null,
+      recaptchaWidget: null
     }
   },
+  mounted() {
+    // Initialize reCAPTCHA when component mounts
+    this.initRecaptcha();
+  },
   methods: {
+    initRecaptcha() {
+      // Wait for the reCAPTCHA script to load
+      if (window.grecaptcha) {
+        this.renderRecaptcha();
+      } else {
+        window.recaptchaCallback = this.renderRecaptcha;
+      }
+    },
+    renderRecaptcha() {
+      if (!this.recaptchaWidget) {
+        this.recaptchaWidget = window.grecaptcha.render('recaptcha-container', {
+          sitekey: '6LfdSr4qAAAAADmRnhI8yVjubblG6FAf6i-0bK2n',
+          theme: 'dark',
+          callback: this.onCaptchaVerified,
+          'expired-callback': this.onCaptchaExpired
+        });
+      }
+    },
+    onCaptchaVerified(response) {
+      this.isCaptchaVerified = true;
+      this.captchaResponse = response;
+    },
+    onCaptchaExpired() {
+      this.isCaptchaVerified = false;
+      this.captchaResponse = null;
+    },
     async handleSubmit() {
+      if (!this.isCaptchaVerified) {
+        await Swal.fire({
+          title: 'Error!',
+          text: 'Please complete the captcha verification.',
+          icon: 'error',
+          confirmButtonColor: '#1e90ff',
+          background: '#1f1f1f',
+          color: '#ffffff'
+        });
+        return;
+      }
+
       try {
         this.isLoading = true;
         
-        const serviceId = 'service_4one86u';
-        const templateId = 'template_j67z1sb';
-        const publicKey = 'LHb8KM38rLlIKX-v0';
+        const serviceId = 'service_4euvsrs';
+        const templateId = 'template_muvt74j';
+        const publicKey = 'HmOnXza70bkghQVKw';
         
         const templateParams = {
           from_name: this.formData.name,
           message: this.formData.message,
           to_name: 'Reynaldi',
+          'g-recaptcha-response': this.captchaResponse
         };
 
         await emailjs.send(serviceId, templateId, templateParams, publicKey);
         
-        // Success message with SweetAlert2
         await Swal.fire({
           title: 'Success!',
           text: 'Your message has been sent successfully.',
@@ -96,14 +144,16 @@ export default {
           color: '#ffffff'
         });
         
-        // Clear the form
+        // Clear form and reset captcha
         this.formData = {
           name: '',
           message: ''
         };
+        this.isCaptchaVerified = false;
+        window.grecaptcha.reset(this.recaptchaWidget);
+        
       } catch (error) {
         console.error('Error sending email:', error);
-        // Error message with SweetAlert2
         await Swal.fire({
           title: 'Error!',
           text: 'Failed to send message. Please try again later.',
@@ -130,6 +180,12 @@ export default {
     opacity: 1;
     transform: scale(1) translateY(0);
   }
+}
+
+.recaptcha-container {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
 }
 
 .fade-zoom-out {
@@ -226,7 +282,6 @@ export default {
   transform: translateY(1px);
 }
 
-/* Social Media Links Styling */
 .social-links {
   margin-top: 30px;
   display: flex;
@@ -256,7 +311,6 @@ export default {
   transform: translateY(1px);
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
   .contact-title {
     font-size: 2rem;
@@ -269,6 +323,11 @@ export default {
   .input-field {
     font-size: 0.9rem;
     padding: 8px 10px;
+  }
+
+  .recaptcha-container {
+    transform: scale(0.9);
+    transform-origin: center;
   }
 }
 </style>
