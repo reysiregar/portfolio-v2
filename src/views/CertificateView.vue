@@ -10,7 +10,7 @@ export default {
             issueDate: 'November 2024',
             imageUrl: 'sertifikat_course_1',
             credentialUrl: 'https://www.dicoding.com/certificates/1OP842VJ1ZQK',
-            skills: 'React, Front-End Web'
+            topics: 'React, Front-End Web'
         },
         {
             id: 2,
@@ -19,7 +19,7 @@ export default {
             issueDate: 'November 2024',
             imageUrl: 'sertifikat_course_2',
             credentialUrl: 'https://www.dicoding.com/certificates/07Z64DLN2PQR',
-            skills: 'Google Cloud, React, Front-End Web, Back-End'
+            topics: 'Google Cloud, React, Front-End Web, Back-End'
         },
         {
             id: 3,
@@ -28,7 +28,7 @@ export default {
             issueDate: 'November 2024',
             imageUrl: 'sertifikat_course_3',
             credentialUrl: 'https://www.dicoding.com/certificates/2VX34E134ZYQ',
-            skills: 'React, Front-End Web'
+            topics: 'React, Front-End Web'
         },
         {
             id: 4,
@@ -37,7 +37,16 @@ export default {
             issueDate: 'November 2024',
             imageUrl: 'sertifikat_course_4',
             credentialUrl: 'https://www.dicoding.com/certificates/4EXG7240GPRL',
-            skills: 'Artificial Intelligence, Machine Learning'
+            topics: 'Artificial Intelligence, Machine Learning'
+        },
+        {
+            id: 5,
+            name: 'Problem Solving (Basic)',
+            issuer: 'HackerRank',
+            issueDate: 'July 2024',
+            imageUrl: 'sertifikat_hackerrank_1',
+            credentialUrl: 'https://www.hackerrank.com/certificates/34f5b92b171d',
+            topics: 'Data Structures, Algorithms'
         }
       ]
     };
@@ -79,7 +88,7 @@ export default {
                       Issued by {{ cert.issuer }} • {{ cert.issueDate }}
                     </div>
                     <div class="w-full mt-4 text-normal text-sm text-left text-blue-200">
-                      {{ cert.skills }}
+                      {{ cert.topics }}
                     </div>
                   </div>
                   
