@@ -19,7 +19,7 @@ export default {
         {
           id: 3,
           name: 'Javascript',
-          imageUrl: 'https://cdn.icon-icons.com/icons2/2415/PNG/512/javascript_original_logo_icon_146455.png',
+          imageUrl: 'https://cdn.jsdelivr.net/npm/programming-languages-logos@0.0.3/src/javascript/javascript.svg',
           status: 'Beginner'
         },
         {
@@ -63,7 +63,7 @@ export default {
         {
           id: 2,
           name: 'GitHub',
-          imageUrl: 'https://img.icons8.com/?size=100&id=bVGqATNwfhYq&format=png&color=000000',
+          imageUrl: 'https://icon-library.com/images/github-icon-white/github-icon-white-6.jpg',
           status: 'Git Hosting'
         },
         {

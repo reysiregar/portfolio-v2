@@ -17,7 +17,7 @@ export default {
           id: 2,
           name: 'Christmas Invitation',
           imageUrl: 'portfolio-v1',
-          status: 'Website of Christmas Invitation for My Church, giving guest the Event details like location, date & time, etc. (Private Project)',
+          status: 'Website of Christmas Invitation for My Church, giving guest the Event details like location, date & time, etc. (Private Project -> Wanna have the code? Contact me for more information.)',
           tech: 'JavaScript, SCSS',
           github: 'https://github.com/reysiregar/portfolio-v2',
           demo: 'https://christmas-website-pdd.vercel.app'
