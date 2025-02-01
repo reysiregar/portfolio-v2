@@ -47,6 +47,15 @@ export default {
             imageUrl: 'sertifikat_hackerrank_1',
             credentialUrl: 'https://www.hackerrank.com/certificates/34f5b92b171d',
             topics: 'Data Structures, Algorithms'
+        },
+        {
+            id: 6,
+            name: 'Fundamental Front-End Web Development',
+            issuer: 'Dicoding',
+            issueDate: 'February 2025',
+            imageUrl: 'sertifikat_course_5',
+            credentialUrl: 'https://www.dicoding.com/certificates/0LZ0RGW63P65',
+            topics: 'API, Webpack, Front-End Web'
         }
       ]
     };
