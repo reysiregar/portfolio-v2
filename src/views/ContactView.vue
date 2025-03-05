@@ -2,10 +2,10 @@
   <transition name="fadeZoomOut">
     <section class="contact fade-zoom-out">
       <div class="container">
-        <h1 class="contact-title">Let's Connect</h1>
+        <h1 class="contact-title">Let's Connect!</h1>
         <p class="contact-description">
-          Send me a message and I'll get back to you soon.<br>
-          (one way communication, you will not receive a reply)
+          Send me a message and be sure to include your email,<br>
+          so I can reach out if needed.
         </p>
         <form class="contact-form" @submit.prevent="showCaptcha">
           <div class="input-wrapper">

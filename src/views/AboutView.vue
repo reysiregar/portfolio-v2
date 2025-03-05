@@ -104,15 +104,10 @@ export default {
         </div>
         <div class="md:w-7/12">
           <p class="mb-3 md:mb-7 fadein-left fadeins-1">
-            &nbsp; &nbsp; &nbsp; Hi everyone! My name is Reynaldi Siregar. I'm a Beginner Front-End Web Developer from Bekasi, Indonesia, with
-            a year of experience in website development.
-            I really enjoy what I do. In my opinion, creating programs is not just a job but also an art with
-            aesthetic value.
+            &nbsp; &nbsp; &nbsp; Hi everyone! My name is Reynaldi Siregar, a passionate <strong>Front-End Web Developer</strong> from Bekasi, Indonesia, with <strong>one year of experience</strong> in website development. I specialize in crafting <strong>responsive, user-friendly, and visually appealing</strong> websites that seamlessly blend functionality with aesthetics. Web development, to me, is more than just coding—it's a form of <strong>digital artistry</strong> that brings ideas to life through innovative and engaging designs.
           </p>
           <p class="mb-3 fadein-left fadeins-2">
-            &nbsp; &nbsp; &nbsp; Building websites that are functional, user-friendly, and visually appealing is more than just work for me—it is my hobby and passion.
-            I love adding a personal touch to every project to ensure that each website not only stands out but also offers an effortless user experience.
-            I am excited to continue giving my best to future clients, bringing their visions to life in the most creative and effective way possible.
+            &nbsp; &nbsp; &nbsp; I take pride in writing clean, efficient code and staying up-to-date with the latest web technologies to ensure top-tier performance and user experience. My goal is to create websites that not only stand out but also provide effortless navigation and interaction. I’m excited to collaborate with businesses and individuals to transform their visions into high-quality digital experiences. Let’s build something amazing together!
           </p>
         </div>
 
