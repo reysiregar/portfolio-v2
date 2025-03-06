@@ -48,8 +48,8 @@ export default defineComponent({
   data() {
     return {
       roles: [
-        "Beginner Front-End Developer",
-        "Beginner UI/UX Designer",
+        "Front-End Developer",
+        "UI/UX Designer",
         "Information System Student",
         "IT Enthusiast"
       ],
