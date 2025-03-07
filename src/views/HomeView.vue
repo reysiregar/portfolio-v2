@@ -49,11 +49,11 @@ export default defineComponent({
     return {
       roles: [
         "Front-End Developer",
-        "UI/UX Designer",
+        "Website Developer",
         "Information System Student",
         "IT Enthusiast"
       ],
-      resumePath: '/Resume_Reynaldi_Wiratama_Siregar.pdf',
+      resumePath: '/CV_REYNALDI_SIREGAR.pdf',
     }
   }
 })

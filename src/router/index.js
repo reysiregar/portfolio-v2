@@ -33,12 +33,6 @@ const routes = [
     meta: { title: 'Blog' }
   },
   {
-    path: '/read/:slug/:id',
-    name: 'articleDetail',
-    component: () => import('../views/ArticleView.vue'),
-    meta: { title: 'Blog' }
-  },
-  {
     path: '/contact',
     name: 'contact',
     component: () => import('../views/ContactView.vue'),

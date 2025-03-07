@@ -51,6 +51,12 @@ export default {
           name: 'Canva',
           imageUrl: 'https://www.canva.com/favicon.ico',
           status: 'Advanced'
+        },
+        {
+          id: 9,
+          name: 'WordPress',
+          imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/9/98/WordPress_blue_logo.svg',
+          status: 'Beginner'
         }
       ],
       tools: [
@@ -78,6 +84,12 @@ export default {
           imageUrl: 'https://vercel.com/favicon.ico',
           status: 'Deployment'
         },
+        {
+          id: 5,
+          name: 'Xampp',
+          imageUrl: 'https://www.apachefriends.org/images/xampp-logo-ac950edf.svg',
+          status: 'Local Server'
+        }
       ]
     };
   }

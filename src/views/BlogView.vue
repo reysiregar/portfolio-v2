@@ -40,11 +40,9 @@
       </div>
     </div>
   </div>
-  <ArticleList />
 </template>
 
 <script>
-import ArticleList from '@/components/ArticleList.vue';
 
 export default {
   data() {
@@ -76,9 +74,6 @@ export default {
         }
       ]
     }
-  },
-  components: {
-    ArticleList
   }
 }
 </script>

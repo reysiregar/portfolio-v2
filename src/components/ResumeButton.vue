@@ -1,7 +1,7 @@
 <template>
     <a
       :href="resumePath"
-      download="Resume_Reynaldi_Wiratama_Siregar.pdf"
+      download="CV_REYNALDI_SIREGAR.pdf"
       class="flex items-center py-2 px-4 mx-auto text-sm font-medium rounded-lg border transition duration-300 md:py-2.5 md:px-5 md:mx-0 text-blue-200 border-blue-200 hover:bg-blue-200 hover:bg-opacity-10 bg-transparent focus:outline-none focus:ring-2 focus:ring-blue-200 focus:ring-opacity-50 w-fit"
       @click="trackDownload"
     >
@@ -21,7 +21,7 @@
           d="M14.25 5.25a5.23 5.23 0 00-1.279-3.434 9.768 9.768 0 016.963 6.963A5.23 5.23 0 0016.5 7.5h-1.875a.375.375 0 01-.375-.375V5.25z"
         />
       </svg>
-      <span>Download Resume</span>
+      <span>Download CV</span>
     </a>
   </template>
   
@@ -36,8 +36,7 @@
     },
     methods: {
       trackDownload() {
-        // Add analytics tracking if needed
-        console.log('Resume download initiated')
+        console.log('CV download initiated')
       }
     }
   }
