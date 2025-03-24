@@ -56,6 +56,15 @@ export default {
             imageUrl: 'sertifikat_course_5',
             credentialUrl: 'https://www.dicoding.com/certificates/0LZ0RGW63P65',
             topics: 'API, Webpack, Front-End Web'
+        },
+        {
+            id: 7,
+            name: 'Intermediate Front-End Development',
+            issuer: 'Dicoding',
+            issueDate: 'March 2025',
+            imageUrl: 'sertifikat_kelulusan',
+            credentialUrl: 'https://www.dicoding.com/users/reysiregar',
+            topics: 'Intermediate, Front-End'
         }
       ]
     };
@@ -64,7 +73,7 @@ export default {
 </script>
 
 <template>
-  <div class="px-5 py-5 md:px-12 md:py-10 text-left text-blue-50 mx-3">
+  <div class="px-5 py-5 md:px-12 md:py-10 text-left mx-3">
     <article data-page="certificates">
       <header>
         <div class="text-2xl font-bold text-white mb-10 fadein-bot title-section flex items-center justify-center flex-col">
@@ -75,61 +84,37 @@ export default {
         </div>
       </header>
       
-      <section>
-        <div>
-          <div class="grid grid-cols-1 gap-4 pb-32 md:grid-cols-2 md:gap-3 xl:grid-cols-3 xl:gap-3 2xl:gap-5 fade-zoom-in">
-            <div v-for="cert in certificates" :key="cert.id">
-              <div class="item-card flex flex-col gap-2 rounded bg-[#1e1e1f] hover:bg-[#282828] border border-[#383838] rounded-xl text-blue-50 md:gap-3 px-5 py-5 lg:px-5 h-96">
-                <div class="flex items-center justify-center h-40 w-full zoom-in">
-                  <img 
-                    :alt="cert.name" 
-                    loading="lazy" 
-                    decoding="async" 
-                    class="drop-shadow-xl rounded rounded-xl w-full h-full object-contain"
-                    :src="'/img/certificates/' + cert.imageUrl + '.jpg'"
-                  >
-                </div>
-                
-                <div class="w-full flex flex-col justify-between flex-grow gap-2 text-sm md:text-base lg:text-lg">
-                  <div>
-                    <div class="title-text font-medium text-secondary">{{ cert.name }}</div>
-                    <div class="w-full text-left text-[10px] text-[#c1c1c1] md:text-xs lg:text-sm mt-2">
-                      Issued by {{ cert.issuer }} • {{ cert.issueDate }}
-                    </div>
-                    <div class="w-full mt-4 text-normal text-sm text-left text-blue-200">
-                      {{ cert.topics }}
-                    </div>
-                  </div>
-                  
-                  <div class="w-full flex justify-end mt-auto pt-4">
-                    <div class="flex cursor-pointer items-end gap-2 text-primary">
-                      <a 
-                        :href="cert.credentialUrl" 
-                        target="_blank" 
-                        rel="noreferrer"
-                        title="View credential" 
-                        class="transition-all hover:text-accent"
-                      >
-                        <svg 
-                          stroke="currentColor"
-                          fill="none" 
-                          stroke-width="2" 
-                          viewBox="0 0 24 24" 
-                          stroke-linecap="round" 
-                          stroke-linejoin="round"
-                          height="18" 
-                          width="18" 
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                          <polyline points="15 3 21 3 21 9"></polyline>
-                          <line x1="10" y1="14" x2="21" y2="3"></line>
-                        </svg>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
+      <section class="certificates-container fade-zoom-in">
+        <div v-for="cert in certificates" :key="cert.id" class="certificate-article">
+          <div class="article-wrapper">
+            <figure>
+              <img 
+                :alt="cert.name" 
+                loading="lazy" 
+                decoding="async"
+                :src="'/img/certificates/' + cert.imageUrl + '.jpg'"
+              >
+            </figure>
+            <div class="article-body">
+              <h2>{{ cert.name }}</h2>
+              <p class="issuer-info">
+                Issued by {{ cert.issuer }} • {{ cert.issueDate }}
+              </p>
+              <p class="topics-info">
+                {{ cert.topics }}
+              </p>
+              <a 
+                :href="cert.credentialUrl" 
+                target="_blank" 
+                rel="noreferrer"
+                class="view-credential"
+              >
+                View Credential 
+                <span class="sr-only">for {{ cert.name }}</span>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                </svg>
+              </a>
             </div>
           </div>
         </div>
@@ -139,15 +124,129 @@ export default {
 </template>
 
 <style>
-.item-card:hover {
-  transition: transform 0.3s ease;
-  transform: translateY(-8px);
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+/* Certificate Card Styling */
+.certificates-container {
+  display: grid;
+  max-width: 1200px;
+  margin-inline: auto;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 24px;
+  padding-bottom: 32px;
 }
 
-svg:hover {
-  stroke: #add8e6;
+.certificate-article {
+  --img-scale: 1.001;
+  --title-color: #e2e8f0;
+  --link-icon-translate: -20px;
+  --link-icon-opacity: 0;
+  position: relative;
+  border-radius: 16px;
+  box-shadow: none;
+  background: #1e1e1f;
+  transform-origin: center;
+  transition: all 0.4s ease-in-out;
+  overflow: hidden;
+  border: 1px solid #383838;
+  font-family: 'Poppins', sans-serif;
 }
 
+.certificate-article a::after {
+  position: absolute;
+  inset-block: 0;
+  inset-inline: 0;
+  cursor: pointer;
+  content: "";
+}
+
+.certificate-article h2 {
+  margin: 0 0 12px 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--title-color);
+  transition: color 0.3s ease-out;
+}
+
+.certificate-article figure {
+  margin: 0;
+  padding: 0;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+}
+
+.certificate-article img {
+  max-width: 100%;
+  transform-origin: center;
+  transform: scale(var(--img-scale));
+  transition: transform 0.4s ease-in-out;
+  object-fit: contain;
+}
+
+.article-body {
+  padding: 24px;
+}
+
+.certificate-article a {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  color: #60a5fa;
+  margin-top: 8px;
+}
+
+.certificate-article a:focus {
+  outline: 1px dotted #60a5fa;
+}
+
+.certificate-article a .icon {
+  min-width: 24px;
+  width: 24px;
+  height: 24px;
+  margin-left: 5px;
+  transform: translateX(var(--link-icon-translate));
+  opacity: var(--link-icon-opacity);
+  transition: all 0.3s;
+}
+
+.certificate-article:hover {
+  --img-scale: 1.1;
+  --title-color: #60a5fa;
+  --link-icon-translate: 0;
+  --link-icon-opacity: 1;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 10px 36px 0px, rgba(0, 0, 0, 0.2) 0px 0px 0px 1px;
+  background: #282828;
+  transform: translateY(-5px);
+}
+
+.issuer-info {
+  font-size: 0.7rem;
+  color: #c1c1c1;
+  margin-bottom: 12px;
+}
+
+.topics-info {
+  font-size: 0.8rem;
+  color: #93c5fd;
+  margin-bottom: 16px;
+}
+
+
+.view-credential {
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.sr-only:not(:focus):not(:active) {
+  clip: rect(0 0 0 0); 
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap; 
+  width: 1px;
+}
+
+/* Animation */
 @keyframes fadeZoomIn {
   0% {
     opacity: 0;
@@ -161,5 +260,36 @@ svg:hover {
 
 .fade-zoom-in {
   animation: fadeZoomIn 1s ease-in-out;
+}
+
+/* Responsive Layout */
+@media screen and (max-width: 768px) {
+  .certificate-article {
+    container: card/inline-size;
+  }
+}
+
+@container card (min-width: 380px) {
+  .article-wrapper {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 16px;
+  }
+  
+  .article-body {
+    padding-left: 0;
+  }
+  
+  figure {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+  
+  figure img {
+    height: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+  }
 }
 </style>

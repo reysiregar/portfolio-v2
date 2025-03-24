@@ -1,48 +1,48 @@
-# Portofolio-v2
+# Portfolio-v2
 
 ## Project Setup
-Untuk memulai proyek ini, pastikan Anda telah menginstal semua dependency dengan menjalankan perintah berikut:
+To start this project, make sure you have installed all dependencies by running the following command:
 
 ```
 npm install
 ```
 
-## Menjalankan Proyek dalam Mode Pengembangan
-Proyek ini dapat dijalankan dalam mode pengembangan dengan fitur hot-reload menggunakan perintah berikut:
+## Running the Project in Development Mode
+This project can be run in development mode with hot-reloading using the following command:
 
 ```
 npm run serve
 ```
 
-## Membuat Build untuk Produksi
-Untuk menghasilkan build yang dioptimalkan untuk produksi, jalankan perintah berikut:
+## Building a Production Build
+To generate a production-optimized build, run the following command:
 
 ```
 npm run build
 ```
 
-## Melakukan Linting dan Perbaikan Kode
-Gunakan perintah berikut untuk melakukan linting dan perbaikan otomatis pada file proyek:
+## Linting and Code Refactoring
+Use the following command to automate linting and refactoring of the project files:
 
 ```
 npm run lint
 ```
 
-## Fitur Contact Form
-Proyek ini menggunakan **EmailJS** untuk menangani pengiriman email dari contact form. Untuk dapat menggunakan layanan ini, Anda perlu:
+## Contact Form Features
+This project uses **EmailJS** to handle sending emails from the contact form. In order to use this service, you need to:
 
-1. **Mendaftar di EmailJS:**
-   - Kunjungi [EmailJS](https://www.emailjs.com/) dan buat akun.
-   - Setelah mendaftar, buat service baru dan dapatkan **Service ID, Template ID, dan Public Key**.
-   - Masukkan informasi ini ke dalam file konfigurasi proyek agar layanan email dapat berfungsi dengan baik.
+1. **Sign Up for EmailJS:**
+- Visit [EmailJS](https://www.emailjs.com/) and create an account.
+- After signing up, create a new service and get **Service ID, Template ID, and Public Key**.
+- Enter this information into the project configuration file so that the email service can function properly.
 
-2. **Google reCAPTCHA untuk Perlindungan dari Spam:**
-   - Contact form dalam proyek ini juga dilengkapi dengan **Google reCAPTCHA** untuk mencegah spam.
-   - Anda perlu mendaftarkan domain website Anda di [Google reCAPTCHA](https://www.google.com/recaptcha/about/) untuk mendapatkan **Site Key** dan **Secret Key**.
-   - Masukkan kunci tersebut ke dalam konfigurasi proyek agar reCAPTCHA berfungsi dengan baik.
+2. **Google reCAPTCHA for Spam Protection:**
+- The contact form in this project is also equipped with **Google reCAPTCHA** to prevent spam.
+- You need to register your website domain on [Google reCAPTCHA](https://www.google.com/recaptcha/about/) to get **Site Key** and **Secret Key**.
+- Enter these keys into the project configuration so that reCAPTCHA works properly.
 
-Tanpa langkah-langkah di atas, layanan contact form mungkin tidak akan berfungsi dengan semestinya.
+Without the above steps, the contact form service may not work properly.
 
-## Penyesuaian Konfigurasi
-Silakan lihat dokumentasi resmi Vue CLI untuk penyesuaian konfigurasi lebih lanjut di:
+## Configuration Adjustments
+Please refer to the official Vue CLI documentation for further configuration adjustments at:
 [Configuration Reference](https://cli.vuejs.org/config/).
