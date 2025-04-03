@@ -374,11 +374,22 @@ export default {
 
   .modal-content {
     width: 95%;
+    max-width: 350px;
   }
 
   .recaptcha-container {
-    transform: scale(0.9);
+    transform: scale(0.85);
     transform-origin: center;
+    margin: 0 auto;
+    overflow: hidden;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 380px) {
+  .recaptcha-container {
+    transform: scale(0.75);
+    margin: -10px auto;
   }
 }
 </style>
