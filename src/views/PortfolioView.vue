@@ -21,6 +21,15 @@ export default {
           tech: 'JavaScript, SCSS',
           github: 'https://github.com/reysiregar/portfolio-v2',
           demo: 'https://christmas-website-pdd.vercel.app'
+        },
+        {
+          id: 3,
+          name: 'Church Community Website',
+          imageUrl: 'portfolio-v3',
+          status: 'I created this website for my church community to provide information about the community, events, church services, and other relevant information.',
+          tech: 'HTML, CSS, JavaScript',
+          github: 'https://github.com/reysiregar/nhkbpmj',
+          demo: 'https://nhkbpmj.vercel.app'
         }
       ]
     };
