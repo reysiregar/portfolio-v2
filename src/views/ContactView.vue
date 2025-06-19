@@ -104,11 +104,30 @@ export default {
     },
     renderRecaptcha() {
       if (!this.recaptchaWidget && document.getElementById('recaptcha-container')) {
+        
+        const isMobile = window.innerWidth <= 768;
+
         this.recaptchaWidget = window.grecaptcha.render('recaptcha-container', {
           sitekey: '6LfdSr4qAAAAADmRnhI8yVjubblG6FAf6i-0bK2n',
           theme: 'dark',
-          callback: this.onCaptchaVerified
+          callback: this.onCaptchaVerified,
+          size: isMobile ? 'compact' : 'normal'
         });
+
+        const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+
+        if (isSafari || isIOS) {
+          const container = document.getElementById('recaptcha-container');
+          if (container) {
+            setTimeout(() => {
+              container.style.display = 'none';
+              setTimeout(() => {
+                container.style.display = 'flex';
+              }, 10);
+            }, 100);
+          }
+        }
       }
     },
     async onCaptchaVerified(captchaResponse) {
@@ -179,7 +198,11 @@ export default {
 .recaptcha-container {
   display: flex;
   justify-content: center;
-  margin: 20px 0;
+  align-items: center;
+  overflow: hidden;
+  width: 100%;
+  height: auto;
+  margin: 0 auto;
 }
 
 .fade-zoom-out {
@@ -358,6 +381,14 @@ export default {
   margin: 20px 0;
 }
 
+@supports (-webkit-touch-callout: none) {
+  .recaptcha-container {
+    transform-origin: 0 0;
+    transform: scale(0.8);
+    width: 125%;
+  }
+}
+
 @media (max-width: 768px) {
   .contact-title {
     font-size: 2rem;
@@ -374,22 +405,27 @@ export default {
 
   .modal-content {
     width: 95%;
-    max-width: 350px;
+    max-width: 320px;
+    padding: 15px;
   }
 
   .recaptcha-container {
-    transform: scale(0.85);
-    transform-origin: center;
+    transform: scale(0.8);
+    transform-origin: 0 0;
     margin: 0 auto;
-    overflow: hidden;
-    max-width: 100%;
+    max-width: 125%;
   }
 }
 
 @media (max-width: 380px) {
+  .modal-content {
+    padding: 10px;
+    max-width: 300px;
+  }
+
   .recaptcha-container {
-    transform: scale(0.75);
-    margin: -10px auto;
+    transform: scale(0.7);
+    width: 142%;
   }
 }
 </style>

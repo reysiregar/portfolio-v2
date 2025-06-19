@@ -84,38 +84,43 @@ export default {
         </div>
       </header>
       
-      <section class="certificates-container fade-zoom-in">
-        <div v-for="cert in certificates" :key="cert.id" class="certificate-article">
-          <div class="article-wrapper">
-            <figure>
-              <img 
-                :alt="cert.name" 
-                loading="lazy" 
-                decoding="async"
-                :src="'/img/certificates/' + cert.imageUrl + '.jpg'"
-              >
-            </figure>
-            <div class="article-body">
-              <h2>{{ cert.name }}</h2>
+      <section class="certificates-container">
+        <div 
+          v-for="(cert, idx) in certificates" 
+          :key="cert.id" 
+          class="certificate-card fadein-smooth"
+          :style="{ animationDelay: (0.12 * idx) + 's' }"
+        >
+          <figure class="card-image">
+            <img 
+              :alt="cert.name" 
+              loading="lazy" 
+              decoding="async"
+              :src="'/img/certificates/' + cert.imageUrl + '.jpg'"
+            >
+          </figure>
+          <div class="card-body">
+            <div class="card-content">
+              <h2 class="card-title">{{ cert.name }}</h2>
               <p class="issuer-info">
-                Issued by {{ cert.issuer }} • {{ cert.issueDate }}
+                {{ cert.issuer }} • {{ cert.issueDate }}
               </p>
               <p class="topics-info">
                 {{ cert.topics }}
               </p>
-              <a 
-                :href="cert.credentialUrl" 
-                target="_blank" 
-                rel="noreferrer"
-                class="view-credential"
-              >
-                View Credential 
-                <span class="sr-only">for {{ cert.name }}</span>
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 20 20" fill="currentColor">
-                  <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
-                </svg>
-              </a>
             </div>
+            <a 
+              :href="cert.credentialUrl" 
+              target="_blank" 
+              rel="noreferrer"
+              class="view-credential-btn"
+            >
+              View Credential
+              <span class="sr-only">for {{ cert.name }}</span>
+              <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+              </svg>
+            </a>
           </div>
         </div>
       </section>
@@ -125,115 +130,125 @@ export default {
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-/* Certificate Card Styling */
+
 .certificates-container {
   display: grid;
-  max-width: 1200px;
+  max-width: 1100px;
   margin-inline: auto;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 24px;
   padding-bottom: 32px;
 }
 
-.certificate-article {
-  --img-scale: 1.001;
-  --title-color: #e2e8f0;
-  --link-icon-translate: -20px;
-  --link-icon-opacity: 0;
-  position: relative;
-  border-radius: 16px;
-  box-shadow: none;
-  background: #1e1e1f;
-  transform-origin: center;
-  transition: all 0.4s ease-in-out;
+.certificate-card {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  background: #23232b;
+  border-radius: 18px;
+  box-shadow: 0 2px 12px 0 rgba(30,30,31,0.10);
+  border: 1.5px solid #34344a;
   overflow: hidden;
-  border: 1px solid #383838;
-  font-family: 'Poppins', sans-serif;
-}
-
-.certificate-article a::after {
-  position: absolute;
-  inset-block: 0;
-  inset-inline: 0;
-  cursor: pointer;
-  content: "";
-}
-
-.certificate-article h2 {
-  margin: 0 0 12px 0;
-  font-size: 1.2rem;
-  font-weight: 600;
-  color: var(--title-color);
-  transition: color 0.3s ease-out;
-}
-
-.certificate-article figure {
-  margin: 0;
+  transition: box-shadow 0.3s cubic-bezier(.4,2,.6,1), transform 0.3s cubic-bezier(.4,2,.6,1), border 0.3s;
   padding: 0;
-  aspect-ratio: 16 / 9;
-  overflow: hidden;
+  min-height: 220px;
+}
+.certificate-card:hover {
+  box-shadow: 0 8px 32px 0 rgba(60,130,246,0.18), 0 1.5px 8px 0 rgba(30,30,31,0.10);
+  border: 1.5px solid #60a5fa;
+  transform: scale(1.035);
+  background: #232a36;
 }
 
-.certificate-article img {
-  max-width: 100%;
-  transform-origin: center;
-  transform: scale(var(--img-scale));
-  transition: transform 0.4s ease-in-out;
-  object-fit: contain;
-}
-
-.article-body {
-  padding: 24px;
-}
-
-.certificate-article a {
-  display: inline-flex;
+.card-image {
+  width: 100%;
+  aspect-ratio: 16/10;
+  background: #18181b;
+  display: flex;
   align-items: center;
-  text-decoration: none;
-  color: #60a5fa;
-  margin-top: 8px;
+  justify-content: center;
+  overflow: hidden;
+  border-bottom: 1px solid #34344a;
+}
+.card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s cubic-bezier(.4,2,.6,1);
+}
+.certificate-card:hover .card-image img {
+  transform: scale(1.07);
 }
 
-.certificate-article a:focus {
-  outline: 1px dotted #60a5fa;
+.card-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  height: 100%;
+  padding: 8px 10px 6px 10px;
 }
-
-.certificate-article a .icon {
-  min-width: 24px;
-  width: 24px;
-  height: 24px;
-  margin-left: 5px;
-  transform: translateX(var(--link-icon-translate));
-  opacity: var(--link-icon-opacity);
-  transition: all 0.3s;
+.card-content {
+  flex: 1 1 auto;
 }
-
-.certificate-article:hover {
-  --img-scale: 1.1;
-  --title-color: #60a5fa;
-  --link-icon-translate: 0;
-  --link-icon-opacity: 1;
-  box-shadow: rgba(0, 0, 0, 0.3) 0px 10px 36px 0px, rgba(0, 0, 0, 0.2) 0px 0px 0px 1px;
-  background: #282828;
-  transform: translateY(-5px);
+.card-title {
+  font-size: 1.08rem;
+  font-weight: 600;
+  color: #e2e8f0;
+  margin-bottom: 8px;
+  margin-top: 2px;
+  line-height: 1.3;
 }
-
 .issuer-info {
-  font-size: 0.7rem;
-  color: #c1c1c1;
+  font-size: 0.78rem;
+  color: #b3b3b3;
+  margin-bottom: 6px;
+}
+.topics-info {
+  font-size: 0.85rem;
+  color: #7dd3fc;
   margin-bottom: 12px;
 }
 
-.topics-info {
-  font-size: 0.8rem;
-  color: #93c5fd;
-  margin-bottom: 16px;
+.view-credential-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #1e293b;
+  color: #60a5fa;
+  font-size: 0.97rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  padding: 6px 12px 6px 10px;
+  margin-top: 10px;
+  margin-bottom: 0;
+  margin-left: 0;
+  box-shadow: 0 1px 4px 0 rgba(30,30,31,0.07);
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.2s;
+  text-decoration: none;
+  position: relative;
 }
-
-
-.view-credential {
-  font-size: 0.85rem;
-  font-weight: 500;
+.view-credential-btn:focus {
+  outline: 2px solid #60a5fa;
+}
+.certificate-card:hover .view-credential-btn {
+  background: #2563eb;
+  color: #fff;
+  box-shadow: 0 2px 8px 0 rgba(60,130,246,0.13);
+  transform: translateY(-2px) scale(1.04);
+}
+.view-credential-btn .icon {
+  min-width: 20px;
+  width: 20px;
+  height: 20px;
+  margin-left: 2px;
+  transition: transform 0.3s, opacity 0.3s;
+  transform: translateX(-8px);
+  opacity: 0;
+}
+.certificate-card:hover .view-credential-btn .icon {
+  transform: translateX(0);
+  opacity: 1;
 }
 
 .sr-only:not(:focus):not(:active) {
@@ -246,50 +261,36 @@ export default {
   width: 1px;
 }
 
-/* Animation */
-@keyframes fadeZoomIn {
+/* Staggered smooth fade-in animation */
+@keyframes fadeinSmooth {
   0% {
     opacity: 0;
-    transform: scale(0.5);
+    transform: translateY(30px);
   }
   100% {
     opacity: 1;
-    transform: scale(1);
+    transform: translateY(0);
   }
 }
-
-.fade-zoom-in {
-  animation: fadeZoomIn 1s ease-in-out;
+.fadein-smooth {
+  opacity: 0;
+  animation: fadeinSmooth 0.8s cubic-bezier(.4,2,.6,1) forwards;
 }
 
-/* Responsive Layout */
 @media screen and (max-width: 768px) {
-  .certificate-article {
-    container: card/inline-size;
+  .certificates-container {
+    grid-template-columns: 1fr;
+    gap: 18px;
   }
-}
-
-@container card (min-width: 380px) {
-  .article-wrapper {
-    display: grid;
-    grid-template-columns: 120px 1fr;
-    gap: 16px;
+  .certificate-card {
+    min-height: 140px;
   }
-  
-  .article-body {
-    padding-left: 0;
+  .card-body {
+    padding: 6px 6px 4px 6px;
   }
-  
-  figure {
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-  }
-  
-  figure img {
-    height: 100%;
-    aspect-ratio: 1;
-    object-fit: cover;
+  .view-credential-btn {
+    padding: 6px 8px 6px 8px;
+    font-size: 0.93rem;
   }
 }
 </style>

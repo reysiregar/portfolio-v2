@@ -9,7 +9,7 @@
           <span class="self-center text-lg text-blue-300 font-semibold whitespace-nowrap fadein-bot hover:text-blue-100">ReynaldiSiregar();</span>
         </button>
         <div class="flex md:order-2 fadein-bot">
-          <a href="https://github.com/reysiregar"><img class="w-9 rounded-full" src="https://seeklogo.com/images/G/github-logo-2E3852456C-seeklogo.com.png" alt="github"></a>
+          <a href="https://github.com/reysiregar"><img class="w-9 rounded-full" src="../public/img/github_logo.png" alt="github"></a>
         </div>
         <div class="hidden md:flex justify-between items-center w-full md:w-auto md:order-1" id="mobile-menu-3">
           <ul class="flex-col md:flex-row flex md:space-x-8 mt-4 md:mt-0 md:text-sm md:font-medium">
@@ -55,6 +55,8 @@
 <script>
 import { SpeedInsights } from "@vercel/speed-insights/vue";
 
+let scrollTimeout;
+
 export default {
   components: {
     SpeedInsights,
@@ -63,6 +65,19 @@ export default {
     redirectToHome() {
       this.$router.push('/');
     },
+    handleScroll() {
+      document.body.classList.add('scrolling');
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(() => {
+        document.body.classList.remove('scrolling');
+      }, 700);
+    },
+  },
+  mounted() {
+    window.addEventListener('scroll', this.handleScroll);
+  },
+  beforeUnmount() {
+    window.removeEventListener('scroll', this.handleScroll);
   },
 };
 </script>
@@ -76,23 +91,41 @@ export default {
   box-sizing: border-box;
 }
 
+/* Hide scrollbar by default */
 ::-webkit-scrollbar {
   width: 5px;
   height: 5px;
+  opacity: 0;
+  background: transparent;
 }
 
-::-webkit-scrollbar-track {
+/* Show scrollbar only when scrolling */
+body.scrolling ::-webkit-scrollbar {
+  opacity: 1;
+  background: initial;
+}
+
+body.scrolling ::-webkit-scrollbar-track {
   background: hsl(240, 1%, 17%);
   border-radius: 5px;
 }
 
-::-webkit-scrollbar-thumb {
+body.scrolling ::-webkit-scrollbar-thumb {
   background: #add8e6;
   border-radius: 5px;
 }
 
-::-webkit-scrollbar-button {
+body.scrolling ::-webkit-scrollbar-button {
   width: 20px;
+}
+
+/* Hide scrollbar for Firefox */
+html {
+  scrollbar-width: none;
+}
+body.scrolling {
+  scrollbar-width: thin;
+  scrollbar-color: #add8e6 hsl(240, 1%, 17%);
 }
 
 body {
@@ -102,7 +135,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  height: 100vh;
+  /* height: 100vh; */
 }
 
 nav {

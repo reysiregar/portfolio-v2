@@ -119,7 +119,7 @@ export default {
             &nbsp; &nbsp; &nbsp; Hi everyone! My name is Reynaldi Siregar, a passionate <strong>Front-End Web Developer</strong> from Bekasi, Indonesia, with <strong>one year of experience</strong> in website development. I specialize in crafting <strong>responsive, user-friendly, and visually appealing</strong> websites that seamlessly blend functionality with aesthetics. Web development, to me, is more than just coding—it's a form of <strong>digital artistry</strong> that brings ideas to life through innovative and engaging designs.
           </p>
           <p class="mb-3 fadein-left fadeins-2">
-            &nbsp; &nbsp; &nbsp; I take pride in writing clean, efficient code and staying up-to-date with the latest web technologies to ensure top-tier performance and user experience. My goal is to create websites that not only stand out but also provide effortless navigation and interaction. I’m excited to collaborate with businesses and individuals to transform their visions into high-quality digital experiences. Let’s build something amazing together!
+            &nbsp; &nbsp; &nbsp; I take pride in writing clean, efficient code and staying up-to-date with the latest web technologies to ensure top-tier performance and user experience. My goal is to create websites that not only stand out but also provide effortless navigation and interaction. I'm excited to collaborate with businesses and individuals to transform their visions into high-quality digital experiences. Let's build something amazing together!
           </p>
         </div>
 
@@ -200,18 +200,15 @@ export default {
 <style>
 .fadein-left {
   opacity: 0;
-  animation: fadeInLeft 0.5s ease-out forwards;
+  animation: fadeInSmooth 0.8s ease-out forwards;
 }
 
-@keyframes fadeInLeft {
+@keyframes fadeInSmooth {
   0% {
     opacity: 0;
-    transform: translateX(100%);
   }
-
   100% {
     opacity: 1;
-    transform: translateX(0);
   }
 }
 
