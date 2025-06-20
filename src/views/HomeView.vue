@@ -59,18 +59,7 @@ export default defineComponent({
 })
 </script>
 
-<style>
-:root {
-  --animation-duration: 0.5s;
-  --animation-delay: 500ms;
-  --profile-shadow-color: rgba(173, 216, 230, 0.5);
-}
-
-body {
-  overflow-y: scroll;
-  overflow-x: hidden;
-}
-
+<style scoped>
 .profile-picture {
   box-shadow: 0 0 clamp(20px, 5vw, 40px) -5px var(--profile-shadow-color);
 }

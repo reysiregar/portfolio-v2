@@ -94,7 +94,6 @@ export default {
           <figure class="card-image">
             <img 
               :alt="cert.name" 
-              loading="lazy" 
               decoding="async"
               :src="'/img/certificates/' + cert.imageUrl + '.jpg'"
             >
@@ -218,7 +217,7 @@ export default {
   font-size: 0.97rem;
   font-weight: 600;
   border: none;
-  border-radius: 8px;
+  border-radius: 12px;
   padding: 6px 12px 6px 10px;
   margin-top: 10px;
   margin-bottom: 0;

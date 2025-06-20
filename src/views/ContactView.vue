@@ -7,7 +7,7 @@
           Send me a message and be sure to include your email,<br>
           so I can reach out if needed.
         </p>
-        <form class="contact-form" @submit.prevent="showCaptcha">
+        <form class="contact-form" @submit.prevent="sendMessage">
           <div class="input-wrapper">
             <input
               v-model="formData.name"
@@ -25,6 +25,18 @@
               class="input-field textarea"
               required
             ></textarea>
+          </div>
+
+          <div class="captcha-wrapper">
+            <label for="captcha" class="captcha-label">Please solve: {{ num1 }} + {{ num2 }} = ?</label>
+            <input
+              v-model.number="captchaAnswer"
+              type="number"
+              id="captcha"
+              placeholder="Answer"
+              class="input-field"
+              required
+            />
           </div>
 
           <button 
@@ -53,18 +65,6 @@
       </div>
     </section>
   </transition>
-  <!-- Captcha Modal -->
-  <teleport to="body">
-    <div v-if="showCaptchaModal" class="modal-overlay" @click.self="closeCaptchaModal">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h2>Please verify you're human</h2>
-          <button class="close-btn" @click="closeCaptchaModal">&times;</button>
-        </div>
-        <div id="recaptcha-container" class="recaptcha-container"></div>
-      </div>
-    </div>
-  </teleport>
 </template>
 
 <script>
@@ -80,64 +80,33 @@ export default {
         message: ''
       },
       isLoading: false,
-      showCaptchaModal: false,
-      recaptchaWidget: null
-    }
+      num1: 0,
+      num2: 0,
+      captchaAnswer: null
+    };
   },
   methods: {
-    showCaptcha() {
-      this.showCaptchaModal = true;
-      // Initialize reCAPTCHA when modal opens
-      this.$nextTick(() => {
-        if (window.grecaptcha) {
-          this.renderRecaptcha();
-        } else {
-          window.recaptchaCallback = this.renderRecaptcha;
-        }
-      });
+    generateCaptcha() {
+      this.num1 = Math.floor(Math.random() * 10) + 1;
+      this.num2 = Math.floor(Math.random() * 10) + 1;
+      this.captchaAnswer = null;
     },
-    closeCaptchaModal() {
-      this.showCaptchaModal = false;
-      // Reset reCAPTCHA if it exists
-      if (this.recaptchaWidget !== null) {
-        window.grecaptcha.reset(this.recaptchaWidget);
-      }
-    },
-    renderRecaptcha() {
-      if (!this.recaptchaWidget && document.getElementById('recaptcha-container')) {
-        
-        const isMobile = window.innerWidth <= 768;
-
-        this.recaptchaWidget = window.grecaptcha.render('recaptcha-container', {
-          sitekey: '6LfdSr4qAAAAADmRnhI8yVjubblG6FAf6i-0bK2n',
-          theme: 'dark',
-          callback: this.onCaptchaVerified,
-          size: isMobile ? 'compact' : 'normal'
+    async sendMessage() {
+      if (this.captchaAnswer !== this.num1 + this.num2) {
+        Swal.fire({
+          title: 'Incorrect Captcha',
+          text: 'Please solve the math problem correctly.',
+          icon: 'error',
+          confirmButtonColor: '#1e90ff',
+          background: '#1f1f1f',
+          color: '#ffffff'
         });
-
-        const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
-        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-
-        if (isSafari || isIOS) {
-          const container = document.getElementById('recaptcha-container');
-          if (container) {
-            setTimeout(() => {
-              container.style.display = 'none';
-              setTimeout(() => {
-                container.style.display = 'flex';
-              }, 10);
-            }, 100);
-          }
-        }
+        this.generateCaptcha();
+        return;
       }
-    },
-    async onCaptchaVerified(captchaResponse) {
-      // Close the modal
-      this.showCaptchaModal = false;
       
+      this.isLoading = true;
       try {
-        this.isLoading = true;
-        
         const serviceId = 'service_4euvsrs';
         const templateId = 'template_muvt74j';
         const publicKey = 'HmOnXza70bkghQVKw';
@@ -146,7 +115,6 @@ export default {
           from_name: this.formData.name,
           message: this.formData.message,
           to_name: 'Reynaldi',
-          'g-recaptcha-response': captchaResponse
         };
 
         await emailjs.send(serviceId, templateId, templateParams, publicKey);
@@ -165,6 +133,7 @@ export default {
           name: '',
           message: ''
         };
+        this.generateCaptcha();
         
       } catch (error) {
         console.error('Error sending email:', error);
@@ -180,6 +149,9 @@ export default {
         this.isLoading = false;
       }
     }
+  },
+  mounted() {
+    this.generateCaptcha();
   }
 };
 </script>
@@ -196,13 +168,6 @@ export default {
   }
 }
 
-.recaptcha-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 20px 0;
-}
-
 .fade-zoom-out {
   animation: fadeZoomOut 0.8s ease-in-out;
 }
@@ -217,7 +182,6 @@ export default {
   align-items: center;
   padding: 0 20px;
   box-sizing: border-box;
-  z-index: 1000;
 }
 
 .container {
@@ -327,59 +291,34 @@ export default {
   transform: translateY(1px);
 }
 
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.75);
+.captcha-wrapper {
   display: flex;
+  align-items: center;
   justify-content: center;
-  align-items: center;
-  z-index: 1000;
+  gap: 15px;
+  margin-top: 10px;
 }
 
-.modal-content {
-  background: #1f1f1f;
-  padding: 20px;
-  border-radius: 10px;
-  width: auto;
-  min-width: 300px;
-}
-
-.modal-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-.modal-header h2 {
-  font-size: 1.5rem;
+.captcha-label {
+  font-size: 1rem;
   color: #f5f5f5;
+  white-space: nowrap;
+}
+
+.captcha-wrapper .input-field {
+  width: 100px;
+  text-align: center;
+}
+
+/* Hide number input arrows */
+.input-field[type=number]::-webkit-inner-spin-button,
+.input-field[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
   margin: 0;
 }
 
-.close-btn {
-  background: none;
-  border: none;
-  color: #bbbbbb;
-  font-size: 1.5rem;
-  cursor: pointer;
-  padding: 0 5px;
-}
-
-.close-btn:hover {
-  color: #ffffff;
-}
-
-@supports (-webkit-touch-callout: none) {
-  .recaptcha-container {
-    transform-origin: 0 0;
-    transform: scale(0.8);
-    width: 125%;
-  }
+.input-field[type=number] {
+  -moz-appearance: textfield;
 }
 
 @media (max-width: 768px) {
@@ -395,29 +334,12 @@ export default {
     font-size: 0.9rem;
     padding: 8px 10px;
   }
-
-  .modal-content {
-    width: 95%;
-    max-width: 320px;
-    padding: 15px;
-  }
-
-  .recaptcha-container {
-    transform: scale(0.9);
-    transform-origin: center;
-    margin: 0;
-  }
 }
 
 @media (max-width: 380px) {
-  .modal-content {
-    padding: 10px;
-    max-width: 300px;
-  }
-
-  .recaptcha-container {
-    transform: scale(0.8);
-    transform-origin: center;
+  .captcha-wrapper {
+    flex-direction: column;
+    gap: 10px;
   }
 }
 </style>

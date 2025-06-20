@@ -1,12 +1,13 @@
 <template>
   <div class="max-w-7xl mx-auto flex flex-col relative">
+    <AppPreloader v-if="isLoading" />
     <!-- Speed Insights Component -->
     <SpeedInsights />
     
     <nav class="max-w-7xl px-5 md:fixed top-0 z-[98] w-screen backdrop-blur-md bg-[#121212] bg-opacity-80">
       <div class="container mx-auto flex flex-wrap items-center justify-between">
         <button @click="redirectToHome" class="flex">
-          <span class="self-center text-lg text-blue-300 font-semibold whitespace-nowrap fadein-bot hover:text-blue-100">ReynaldiSiregar();</span>
+          <span class="self-center text-lg text-blue-300 font-semibold whitespace-nowrap fadein-bot">Rey's Portfolio</span>
         </button>
         <div class="flex md:order-2 fadein-bot">
           <a href="https://github.com/reysiregar"><img class="w-9 rounded-full" src="../public/img/github_logo.png" alt="github"></a>
@@ -44,7 +45,7 @@
     <nav class="flex justify-around py-4 text-xs">
       <router-link to="/" class="text-gray-300 hover:text-white">Home</router-link>
       <router-link to="/about" class="text-gray-300 hover:text-white">About</router-link>
-      <router-link to="/portfolio" class="text-gray-300 hover:text-white">Project</router-link>
+      <router-link to="/portfolio" class="text-gray-300 hover:text-white">Projects</router-link>
       <router-link to="/certificate" class="text-gray-300 hover:text-white">Certificate</router-link>
       <router-link to="/blog" class="text-gray-300 hover:text-white">Blog</router-link>
       <router-link to="/contact" class="text-gray-300 hover:text-white">Contact</router-link>
@@ -54,12 +55,19 @@
 
 <script>
 import { SpeedInsights } from "@vercel/speed-insights/vue";
+import AppPreloader from './components/AppPreloader.vue';
 
 let scrollTimeout;
 
 export default {
   components: {
     SpeedInsights,
+    AppPreloader,
+  },
+  data() {
+    return {
+      isLoading: true,
+    };
   },
   methods: {
     redirectToHome() {
@@ -75,6 +83,9 @@ export default {
   },
   mounted() {
     window.addEventListener('scroll', this.handleScroll);
+    setTimeout(() => {
+      this.isLoading = false;
+    }, 2000);
   },
   beforeUnmount() {
     window.removeEventListener('scroll', this.handleScroll);
@@ -83,6 +94,12 @@ export default {
 </script>
 
 <style>
+:root {
+  --animation-duration: 0.5s;
+  --animation-delay: 500ms;
+  --profile-shadow-color: rgba(173, 216, 230, 0.5);
+}
+
 *,
 *::before,
 *::after {
