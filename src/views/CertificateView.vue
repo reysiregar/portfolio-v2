@@ -211,30 +211,29 @@ export default {
 .view-credential-btn {
   display: flex;
   align-items: center;
+  justify-content: flex-start;
   gap: 6px;
-  background: #1e293b;
+  background: transparent;
   color: #60a5fa;
-  font-size: 0.97rem;
+  font-size: 1.05rem;
   font-weight: 600;
   border: none;
-  border-radius: 12px;
-  padding: 6px 12px 6px 10px;
-  margin-top: 10px;
-  margin-bottom: 0;
-  margin-left: 0;
-  box-shadow: 0 1px 4px 0 rgba(30,30,31,0.07);
-  transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.2s;
+  width: 100%;
+  margin: 0;
+  border-radius: 0 0 18px 18px;
+  padding: 14px 18px 14px 18px;
+  box-shadow: none;
+  transition: background 0.18s, color 0.18s;
   text-decoration: none;
   position: relative;
 }
 .view-credential-btn:focus {
   outline: 2px solid #60a5fa;
 }
-.certificate-card:hover .view-credential-btn {
-  background: #2563eb;
-  color: #fff;
-  box-shadow: 0 2px 8px 0 rgba(60,130,246,0.13);
-  transform: translateY(-2px) scale(1.04);
+.certificate-card:hover .view-credential-btn,
+.view-credential-btn:hover {
+  background: rgba(96, 165, 250, 0.08);
+  color: #93c5fd;
 }
 .view-credential-btn .icon {
   min-width: 20px;
@@ -245,7 +244,8 @@ export default {
   transform: translateX(-8px);
   opacity: 0;
 }
-.certificate-card:hover .view-credential-btn .icon {
+.certificate-card:hover .view-credential-btn .icon,
+.view-credential-btn:hover .icon {
   transform: translateX(0);
   opacity: 1;
 }

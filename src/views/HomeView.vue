@@ -27,7 +27,7 @@
         width="300" 
         height="300" 
         decoding="async" 
-        class="w-10/12 md:h-auto rounded-full profile-picture" 
+        class="w-9/12 md:w-[300px] md:h-auto rounded-full profile-picture" 
         src="/img/profile.jpg"
       >
     </div>
