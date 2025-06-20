@@ -60,6 +60,11 @@ export default defineComponent({
 </script>
 
 <style scoped>
+:root {
+  --animation-duration: 0.5s;
+  --animation-delay: 500ms;
+  --profile-shadow-color: rgba(173, 216, 230, 0.5);
+}
 .profile-picture {
   box-shadow: 0 0 clamp(20px, 5vw, 40px) -5px var(--profile-shadow-color);
 }

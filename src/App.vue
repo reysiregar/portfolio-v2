@@ -9,9 +9,8 @@
         <button @click="redirectToHome" class="flex">
           <span class="self-center text-lg text-blue-300 font-semibold whitespace-nowrap fadein-bot">Rey's Portfolio</span>
         </button>
-        <div class="flex md:order-2 fadein-bot">
-          <a href="https://github.com/reysiregar"><img class="w-9 rounded-full" src="../public/img/github_logo.png" alt="github"></a>
-        </div>
+        
+        <!-- Desktop Navigation -->
         <div class="hidden md:flex justify-between items-center w-full md:w-auto md:order-1" id="mobile-menu-3">
           <ul class="flex-col md:flex-row flex md:space-x-8 mt-4 md:mt-0 md:text-sm md:font-medium">
             <li>
@@ -34,23 +33,128 @@
             </li>
           </ul>
         </div>
+
+        <!-- Mobile Menu Button and GitHub Link -->
+        <div class="flex items-center gap-4 md:order-2 fadein-bot">
+          <a href="https://github.com/reysiregar" class="hidden md:block"><img class="w-9 rounded-full" src="../public/img/github_logo.png" alt="github"></a>
+          
+          <!-- Hamburger Menu Button (Mobile Only) -->
+          <button 
+            @click="toggleMobileMenu" 
+            class="md:hidden flex flex-col justify-center items-center w-8 h-8 relative z-50"
+            :class="{ 'menu-open': isMobileMenuOpen }"
+          >
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+          </button>
+        </div>
       </div>
     </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div 
+      class="fixed inset-0 bg-black bg-opacity-50 z-40 md:hidden transition-opacity duration-300"
+      :class="{ 'opacity-100 pointer-events-auto': isMobileMenuOpen, 'opacity-0 pointer-events-none': !isMobileMenuOpen }"
+      @click="closeMobileMenu"
+    ></div>
+
+    <!-- Mobile Menu Content -->
+    <div 
+      class="fixed top-0 right-0 h-full w-64 bg-[#121212] bg-opacity-95 backdrop-blur-md z-50 md:hidden transform transition-transform duration-300 ease-in-out"
+      :class="{ 'translate-x-0': isMobileMenuOpen, 'translate-x-full': !isMobileMenuOpen }"
+    >
+      <div class="flex flex-col h-full">
+        <!-- Menu Header -->
+        <div class="flex items-center justify-between p-6 border-b border-[#383838]">
+          <span class="text-lg text-blue-300 font-semibold">Menu</span>
+          <button @click="closeMobileMenu" class="text-gray-400 hover:text-white">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Navigation Links -->
+        <nav class="flex-1 p-6">
+          <ul class="space-y-4">
+            <li>
+              <router-link 
+                to="/" 
+                @click="closeMobileMenu"
+                class="block text-gray-300 hover:text-white py-3 px-4 rounded-lg hover:bg-[#383838] transition-all duration-200"
+                :class="{ 'text-blue-300 bg-[#383838]': $route.path === '/' }"
+              >
+                Home
+              </router-link>
+            </li>
+            <li>
+              <router-link 
+                to="/about" 
+                @click="closeMobileMenu"
+                class="block text-gray-300 hover:text-white py-3 px-4 rounded-lg hover:bg-[#383838] transition-all duration-200"
+                :class="{ 'text-blue-300 bg-[#383838]': $route.path === '/about' }"
+              >
+                About
+              </router-link>
+            </li>
+            <li>
+              <router-link 
+                to="/portfolio" 
+                @click="closeMobileMenu"
+                class="block text-gray-300 hover:text-white py-3 px-4 rounded-lg hover:bg-[#383838] transition-all duration-200"
+                :class="{ 'text-blue-300 bg-[#383838]': $route.path === '/portfolio' }"
+              >
+                Project
+              </router-link>
+            </li>
+            <li>
+              <router-link 
+                to="/certificate" 
+                @click="closeMobileMenu"
+                class="block text-gray-300 hover:text-white py-3 px-4 rounded-lg hover:bg-[#383838] transition-all duration-200"
+                :class="{ 'text-blue-300 bg-[#383838]': $route.path === '/certificate' }"
+              >
+                Certificate
+              </router-link>
+            </li>
+            <li>
+              <router-link 
+                to="/blog" 
+                @click="closeMobileMenu"
+                class="block text-gray-300 hover:text-white py-3 px-4 rounded-lg hover:bg-[#383838] transition-all duration-200"
+                :class="{ 'text-blue-300 bg-[#383838]': $route.path === '/blog' }"
+              >
+                Blog
+              </router-link>
+            </li>
+            <li>
+              <router-link 
+                to="/contact" 
+                @click="closeMobileMenu"
+                class="block text-gray-300 hover:text-white py-3 px-4 rounded-lg hover:bg-[#383838] transition-all duration-200"
+                :class="{ 'text-blue-300 bg-[#383838]': $route.path === '/contact' }"
+              >
+                Contact
+              </router-link>
+            </li>
+          </ul>
+        </nav>
+
+        <!-- Menu Footer -->
+        <div class="p-6 border-t border-[#383838]">
+          <a href="https://github.com/reysiregar" class="flex items-center gap-3 text-gray-300 hover:text-white transition-colors duration-200">
+            <img class="w-6 h-6 rounded-full" src="../public/img/github_logo.png" alt="github">
+            <span>GitHub</span>
+          </a>
+        </div>
+      </div>
+    </div>
 
     <div class="md:mt-[100px]">
       <router-view />
     </div>
   </div>
-  <footer class="block md:hidden fixed bottom-0 left-0 right-0 rounded-t-3xl border border-[#383838] bg-[#121212] bg-opacity-80 backdrop-blur-md backdrop-opacity-90">
-    <nav class="flex justify-around py-4 text-xs">
-      <router-link to="/" class="text-gray-300 hover:text-white">Home</router-link>
-      <router-link to="/about" class="text-gray-300 hover:text-white">About</router-link>
-      <router-link to="/portfolio" class="text-gray-300 hover:text-white">Projects</router-link>
-      <router-link to="/certificate" class="text-gray-300 hover:text-white">Certificate</router-link>
-      <router-link to="/blog" class="text-gray-300 hover:text-white">Blog</router-link>
-      <router-link to="/contact" class="text-gray-300 hover:text-white">Contact</router-link>
-    </nav>
-  </footer>
 </template>
 
 <script>
@@ -67,11 +171,25 @@ export default {
   data() {
     return {
       isLoading: true,
+      isMobileMenuOpen: false,
     };
   },
   methods: {
     redirectToHome() {
       this.$router.push('/');
+    },
+    toggleMobileMenu() {
+      this.isMobileMenuOpen = !this.isMobileMenuOpen;
+      // Prevent body scroll when menu is open
+      if (this.isMobileMenuOpen) {
+        document.body.style.overflow = 'hidden';
+      } else {
+        document.body.style.overflow = '';
+      }
+    },
+    closeMobileMenu() {
+      this.isMobileMenuOpen = false;
+      document.body.style.overflow = '';
     },
     handleScroll() {
       document.body.classList.add('scrolling');
@@ -89,7 +207,15 @@ export default {
   },
   beforeUnmount() {
     window.removeEventListener('scroll', this.handleScroll);
+    // Clean up body overflow
+    document.body.style.overflow = '';
   },
+  watch: {
+    // Close mobile menu when route changes
+    $route() {
+      this.closeMobileMenu();
+    }
+  }
 };
 </script>
 
@@ -184,6 +310,38 @@ nav a.router-link-exact-active::after {
 
 nav a.router-link-exact-active:hover {
   color: white;
+}
+
+/* Hamburger Menu Styles */
+.hamburger-line {
+  width: 100%;
+  height: 3px;
+  background-color: #add8e6;
+  border-radius: 2px;
+  transition: all 0.3s ease-in-out;
+  transform-origin: center;
+}
+
+.hamburger-line:nth-child(1) {
+  margin-bottom: 4px;
+}
+
+.hamburger-line:nth-child(2) {
+  margin-bottom: 4px;
+}
+
+/* Hamburger to X Animation */
+.menu-open .hamburger-line:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.menu-open .hamburger-line:nth-child(2) {
+  opacity: 0;
+  transform: scale(0);
+}
+
+.menu-open .hamburger-line:nth-child(3) {
+  transform: rotate(-45deg) translate(7px, -6px);
 }
 
 @keyframes fadeInLeft {
