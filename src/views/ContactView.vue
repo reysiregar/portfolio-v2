@@ -51,19 +51,20 @@
           </a>
         </div>
       </div>
-
-      <!-- Captcha Modal -->
-      <div v-if="showCaptchaModal" class="modal-overlay" @click.self="closeCaptchaModal">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h2>Please verify you're human</h2>
-            <button class="close-btn" @click="closeCaptchaModal">&times;</button>
-          </div>
-          <div id="recaptcha-container" class="recaptcha-container"></div>
-        </div>
-      </div>
     </section>
   </transition>
+  <!-- Captcha Modal -->
+  <teleport to="body">
+    <div v-if="showCaptchaModal" class="modal-overlay" @click.self="closeCaptchaModal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>Please verify you're human</h2>
+          <button class="close-btn" @click="closeCaptchaModal">&times;</button>
+        </div>
+        <div id="recaptcha-container" class="recaptcha-container"></div>
+      </div>
+    </div>
+  </teleport>
 </template>
 
 <script>
@@ -199,10 +200,7 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow: hidden;
-  width: 100%;
-  height: auto;
-  margin: 0 auto;
+  margin: 20px 0;
 }
 
 .fade-zoom-out {
@@ -219,6 +217,7 @@ export default {
   align-items: center;
   padding: 0 20px;
   box-sizing: border-box;
+  z-index: 1000;
 }
 
 .container {
@@ -345,8 +344,8 @@ export default {
   background: #1f1f1f;
   padding: 20px;
   border-radius: 10px;
-  max-width: 400px;
-  width: 90%;
+  width: auto;
+  min-width: 300px;
 }
 
 .modal-header {
@@ -373,12 +372,6 @@ export default {
 
 .close-btn:hover {
   color: #ffffff;
-}
-
-.recaptcha-container {
-  display: flex;
-  justify-content: center;
-  margin: 20px 0;
 }
 
 @supports (-webkit-touch-callout: none) {
@@ -410,10 +403,9 @@ export default {
   }
 
   .recaptcha-container {
-    transform: scale(0.8);
-    transform-origin: 0 0;
-    margin: 0 auto;
-    max-width: 125%;
+    transform: scale(0.9);
+    transform-origin: center;
+    margin: 0;
   }
 }
 
@@ -424,8 +416,8 @@ export default {
   }
 
   .recaptcha-container {
-    transform: scale(0.7);
-    width: 142%;
+    transform: scale(0.8);
+    transform-origin: center;
   }
 }
 </style>
