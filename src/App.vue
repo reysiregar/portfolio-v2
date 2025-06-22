@@ -341,7 +341,7 @@ nav a.router-link-exact-active:hover {
 }
 
 .menu-open .hamburger-line:nth-child(3) {
-  transform: rotate(-45deg) translate(7px, -6px);
+  transform: rotate(-45deg) translate(5px, -5px);
 }
 
 @keyframes fadeInLeft {
