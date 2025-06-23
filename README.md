@@ -36,11 +36,6 @@ This project uses **EmailJS** to handle sending emails from the contact form. In
 - After signing up, create a new service and get **Service ID, Template ID, and Public Key**.
 - Enter this information into the project configuration file so that the email service can function properly.
 
-2. **Google reCAPTCHA for Spam Protection:**
-- The contact form in this project is also equipped with **Google reCAPTCHA** to prevent spam.
-- You need to register your website domain on [Google reCAPTCHA](https://www.google.com/recaptcha/about/) to get **Site Key** and **Secret Key**.
-- Enter these keys into the project configuration so that reCAPTCHA works properly.
-
 Without the above steps, the contact form service may not work properly.
 
 ## Configuration Adjustments
