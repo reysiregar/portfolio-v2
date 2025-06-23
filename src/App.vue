@@ -6,7 +6,7 @@
     
     <nav class="max-w-7xl px-5 md:fixed top-0 z-[98] w-screen backdrop-blur-md bg-[#121212] bg-opacity-80">
       <div class="container mx-auto flex flex-wrap items-center justify-between">
-        <button @click="redirectToHome" class="flex">
+        <button @click="redirectToHome" class="flex" aria-label="Go to Home">
           <span class="self-center text-lg text-blue-300 font-semibold whitespace-nowrap fadein-bot">Rey's Portfolio</span>
         </button>
         
@@ -36,13 +36,14 @@
 
         <!-- Mobile Menu Button and GitHub Link -->
         <div class="flex items-center gap-4 md:order-2 fadein-bot">
-          <a href="https://github.com/reysiregar" class="hidden md:block"><img class="w-9 rounded-full" src="../public/img/github_logo.png" alt="github"></a>
+          <a href="https://github.com/reysiregar" class="hidden md:block"><img class="w-9 rounded-full" src="../public/img/github_logo.png" alt="GitHub profile of Reynaldi Siregar"></a>
           
           <!-- Hamburger Menu Button (Mobile Only) -->
           <button 
             @click="toggleMobileMenu" 
             class="md:hidden flex flex-col justify-center items-center w-8 h-8 relative z-50"
             :class="{ 'menu-open': isMobileMenuOpen }"
+            aria-label="Open mobile menu"
           >
             <span class="hamburger-line"></span>
             <span class="hamburger-line"></span>
@@ -68,7 +69,7 @@
         <!-- Menu Header -->
         <div class="flex items-center justify-between p-6 border-b border-[#383838]">
           <span class="text-lg text-blue-300 font-semibold">Menu</span>
-          <button @click="closeMobileMenu" class="text-gray-400 hover:text-white">
+          <button @click="closeMobileMenu" class="text-gray-400 hover:text-white" aria-label="Close mobile menu">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
             </svg>
@@ -144,8 +145,8 @@
         <!-- Menu Footer -->
         <div class="p-6 border-t border-[#383838]">
           <a href="https://github.com/reysiregar" class="flex items-center gap-3 text-gray-300 hover:text-white transition-colors duration-200">
-            <img class="w-6 h-6 rounded-full" src="../public/img/github_logo.png" alt="github">
-            <span>GitHub</span>
+            <img class="w-6 h-6 rounded-full" src="../public/img/github_logo.png" alt="GitHub profile of Reynaldi Siregar">
+            <span class="sr-only">GitHub</span>
           </a>
         </div>
       </div>

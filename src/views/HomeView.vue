@@ -22,7 +22,7 @@
     </div>
     <div :class="['flex justify-center md:justify-start', showContent ? 'animate-fade-right' : 'opacity-0']">
       <img 
-        alt="Reynaldi Wiratama Siregar's profile picture" 
+        alt="Profile picture of Reynaldi Siregar" 
         fetchpriority="high" 
         width="300" 
         height="300" 
