@@ -152,7 +152,7 @@
     </div>
 
     <div class="md:mt-[100px]">
-      <router-view />
+      <router-view :showContent="!isLoading" />
     </div>
   </div>
 </template>

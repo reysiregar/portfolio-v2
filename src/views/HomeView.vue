@@ -1,37 +1,35 @@
 <template>
-  <main class="mt-6 md:mt-1 min-h-[65vh] md:min-h-[80vh] flex flex-col items-center justify-center gap-8">
-    <div v-show="!$root.isLoading" class="fadein-content w-full flex flex-col items-center justify-center">
-      <div class="flex justify-center animate-fade-right mb-8">
-        <img
-          alt="Reynaldi Siregar's profile picture" 
-          fetchpriority="high" 
-          width="300" 
-          height="300" 
-          decoding="async" 
-          class="w-9/12 md:w-[300px] md:h-auto rounded-full profile-picture" 
-          src="/img/profile.jpg"
-        >
-      </div>
-      <div class="space-y-2 text-center md:text-left px-10">
-        <p class="text-blue-200 animate-fade-up">Hello World, I'm</p>
-        <h1 class="text-4xl font-bold md:text-5xl text-white animate-fade-up">Reynaldi Siregar</h1>
-        <div class="py-2">
-          <TypeWriter 
-            :phrases="roles"
-            :period="2000"
-            class="text-xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-slate-100 to-blue-500 md:text-2xl animate-fade-up"
-          />
-        </div>
-        <p class="text-white pr-4 animate-fade-up">
-          Welcome to My portfolio website. 
-          <span class="wave" role="img" aria-label="Waving hand emoji">👋🏼</span>
-        </p>
-        <br>
-        <ResumeButton 
-          :resume-path="resumePath"
-          class="animate-fade-bot"
+  <main class="mt-6 md:mt-1 flex flex-col-reverse gap-8 items-center md:flex-row md:gap-16 md:justify-center min-h-[65vh] md:min-h-[80vh]">
+    <div class="space-y-2 text-center md:text-left px-10">
+      <p :class="['text-blue-200', showContent ? 'animate-fade-up' : 'opacity-0']">Hello World, I'm</p>
+      <h1 :class="['text-4xl font-bold md:text-5xl text-white', showContent ? 'animate-fade-up' : 'opacity-0']">Reynaldi Siregar</h1>
+      <div class="py-2">
+        <TypeWriter 
+          :phrases="roles"
+          :period="2000"
+          :class="['text-xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-slate-100 to-blue-500 md:text-2xl', showContent ? 'animate-fade-up' : 'opacity-0']"
         />
       </div>
+      <p :class="['text-white pr-4', showContent ? 'animate-fade-up' : 'opacity-0']">
+        Welcome to My portfolio website. 
+        <span class="wave" role="img" aria-label="Waving hand emoji">👋🏼</span>
+      </p>
+      <br>
+      <ResumeButton 
+        :resume-path="resumePath"
+        :class="showContent ? 'animate-fade-bot' : 'opacity-0'"
+      />
+    </div>
+    <div :class="['flex justify-center md:justify-start', showContent ? 'animate-fade-right' : 'opacity-0']">
+      <img 
+        alt="Reynaldi Siregar's profile picture" 
+        fetchpriority="high" 
+        width="300" 
+        height="300" 
+        decoding="async" 
+        class="w-9/12 md:w-[300px] md:h-auto rounded-full profile-picture" 
+        src="/img/profile.jpg"
+      >
     </div>
   </main>
 </template>
@@ -46,6 +44,12 @@ export default defineComponent({
   components: {
     TypeWriter,
     ResumeButton
+  },
+  props: {
+    showContent: {
+      type: Boolean,
+      default: false
+    }
   },
   data() {
     return {
@@ -146,14 +150,5 @@ export default defineComponent({
     animation: none;
     opacity: 1;
   }
-}
-
-.fadein-content {
-  opacity: 0;
-  animation: fadeinContent 0.7s ease 0.1s forwards;
-}
-@keyframes fadeinContent {
-  from { opacity: 0; }
-  to { opacity: 1; }
 }
 </style>
