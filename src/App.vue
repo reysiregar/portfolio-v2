@@ -316,7 +316,7 @@ nav a.router-link-exact-active:hover {
 .hamburger-line {
   width: 100%;
   height: 3px;
-  background-color: #add8e6;
+  background-color: #93c5fd;
   border-radius: 2px;
   transition: all 0.3s ease-in-out;
   transform-origin: center;
