@@ -99,7 +99,6 @@ export default {
   <div
     class="bg-[#1e1e1f] px-5 py-5 md:px-12 md:py-10 text-left border border-[#383838] rounded-3xl text-blue-50 mx-3 mb-5">
     <article data-page="about">
-
       <header>
         <div class="text-2xl font-bold text-white mb-5 fadein-bot title-section flex items-center">
           About Me &nbsp;
@@ -107,7 +106,6 @@ export default {
             data-aos-duration="600"></div>
         </div>
       </header>
-
       <section
         class="text-sm md:text-lg text-justify flex flex-col gap-4 md:flex-row md:gap-8 md:justify-left md:items-center">
         <div class="flex justify-center">
@@ -116,15 +114,13 @@ export default {
         </div>
         <div class="md:w-7/12">
           <p class="mb-3 md:mb-7 fadein-left fadeins-1">
-            &nbsp; &nbsp; &nbsp; Hi everyone! My name is Reynaldi Siregar, a passionate <strong>Front-End Web Developer</strong> from Bekasi, Indonesia, with <strong>one year of experience</strong> in website development. I specialize in crafting <strong>responsive, user-friendly, and visually appealing</strong> websites that seamlessly blend functionality with aesthetics. Web development, to me, is more than just coding—it's a form of <strong>digital artistry</strong> that brings ideas to life through innovative and engaging designs.
+            &nbsp; &nbsp; &nbsp; Hi everyone! My name is <strong>Reynaldi Siregar</strong>, a passionate <strong>Front-End Web Developer</strong> from Bekasi, Indonesia, with <strong>one year of experience</strong> in website development. I specialize in crafting <strong>responsive, user-friendly, and visually appealing</strong> websites that seamlessly blend functionality with aesthetics. Web development, to me, is more than just coding—it's a form of <strong>digital artistry</strong> that brings ideas to life through innovative and engaging designs.
           </p>
           <p class="mb-3 fadein-left fadeins-2">
             &nbsp; &nbsp; &nbsp; I take pride in writing clean, efficient code and staying up-to-date with the latest web technologies to ensure top-tier performance and user experience. My goal is to create websites that not only stand out but also provide effortless navigation and interaction. I'm excited to collaborate with businesses and individuals to transform their visions into high-quality digital experiences. Let's build something amazing together!
           </p>
         </div>
-
       </section>
-
     </article>
   </div>
 
