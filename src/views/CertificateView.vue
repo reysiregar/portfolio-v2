@@ -7,7 +7,7 @@ export default {
             id: 1,
             name: 'Belajar Dasar Pemrograman Web',
             issuer: 'Dicoding',
-            issueDate: 'November 2024',
+            issueDate: 'November 2025',
             imageUrl: 'sertifikat_course_1',
             credentialUrl: 'https://www.dicoding.com/certificates/1OP842VJ1ZQK',
             topics: 'React, Front-End Web'
@@ -16,7 +16,7 @@ export default {
             id: 2,
             name: 'Belajar Dasar Pemrograman JavaScript',
             issuer: 'Dicoding',
-            issueDate: 'November 2024',
+            issueDate: 'November 2025',
             imageUrl: 'sertifikat_course_2',
             credentialUrl: 'https://www.dicoding.com/certificates/07Z64DLN2PQR',
             topics: 'Google Cloud, React, Front-End Web, Back-End'
@@ -25,7 +25,7 @@ export default {
             id: 3,
             name: 'Belajar Membuat Front-End Web untuk Pemula',
             issuer: 'Dicoding',
-            issueDate: 'November 2024',
+            issueDate: 'November 2025',
             imageUrl: 'sertifikat_course_3',
             credentialUrl: 'https://www.dicoding.com/certificates/2VX34E134ZYQ',
             topics: 'React, Front-End Web'
@@ -34,7 +34,7 @@ export default {
             id: 4,
             name: 'Belajar Dasar AI',
             issuer: 'Dicoding',
-            issueDate: 'November 2024',
+            issueDate: 'November 2025',
             imageUrl: 'sertifikat_course_4',
             credentialUrl: 'https://www.dicoding.com/certificates/4EXG7240GPRL',
             topics: 'Artificial Intelligence, Machine Learning'
@@ -43,7 +43,7 @@ export default {
             id: 5,
             name: 'Problem Solving (Basic)',
             issuer: 'HackerRank',
-            issueDate: 'July 2024',
+            issueDate: 'July 2025',
             imageUrl: 'sertifikat_hackerrank_1',
             credentialUrl: 'https://www.hackerrank.com/certificates/34f5b92b171d',
             topics: 'Data Structures, Algorithms'
@@ -68,6 +68,13 @@ export default {
         }
       ]
     };
+  },
+  methods: {
+    handleImageError(event) {
+      // Fallback to a placeholder or hide the image
+      event.target.style.display = 'none';
+      event.target.nextElementSibling.style.display = 'flex';
+    }
   }
 }
 </script>
@@ -91,33 +98,41 @@ export default {
           class="certificate-card fadein-smooth"
           :style="{ animationDelay: (0.12 * idx) + 's' }"
         >
-          <figure class="card-image">
+          <div class="card-image">
             <img 
               :alt="cert.name" 
               decoding="async"
               :src="'/img/certificates/' + cert.imageUrl + '.jpg'"
+              @error="handleImageError"
             >
-          </figure>
+            <div class="image-fallback" style="display: none;">
+              <svg xmlns="http://www.w3.org/2000/svg" class="fallback-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                <polyline points="21,15 16,10 5,21"></polyline>
+              </svg>
+              <span>Certificate Image</span>
+            </div>
+          </div>
           <div class="card-body">
             <div class="card-content">
-              <h2 class="card-title">{{ cert.name }}</h2>
-              <p class="issuer-info">
-                {{ cert.issuer }} • {{ cert.issueDate }}
-              </p>
-              <p class="topics-info">
-                {{ cert.topics }}
-              </p>
+              <h3 class="card-title" :title="cert.name">{{ cert.name }}</h3>
+              <div class="cert-meta">
+                <span class="issuer">{{ cert.issuer }}</span>
+                <span class="date">{{ cert.issueDate }}</span>
+              </div>
+              <div class="topics" :title="cert.topics">{{ cert.topics }}</div>
             </div>
             <a 
               :href="cert.credentialUrl" 
               target="_blank" 
               rel="noreferrer"
               class="view-credential-btn"
+              :aria-label="`View ${cert.name} credential`"
             >
-              View Credential
-              <span class="sr-only">for {{ cert.name }}</span>
-              <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 20 20" fill="currentColor">
-                <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+              <span>View Credential</span>
+              <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
               </svg>
             </a>
           </div>
@@ -128,168 +143,357 @@ export default {
 </template>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+* {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
 
 .certificates-container {
   display: grid;
-  max-width: 1100px;
+  max-width: 1200px;
   margin-inline: auto;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 24px;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 20px;
   padding-bottom: 32px;
 }
 
 .certificate-card {
+  position: relative;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.320, 1);
+  height: 380px;
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  background: #23232b;
-  border-radius: 18px;
-  box-shadow: 0 2px 12px 0 rgba(30,30,31,0.10);
-  border: 1.5px solid #34344a;
-  overflow: hidden;
-  transition: box-shadow 0.3s cubic-bezier(.4,2,.6,1), transform 0.3s cubic-bezier(.4,2,.6,1), border 0.3s;
-  padding: 0;
-  min-height: 220px;
 }
+
+.certificate-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.1) 0%, 
+    rgba(255, 255, 255, 0.05) 50%, 
+    rgba(255, 255, 255, 0.02) 100%);
+  border-radius: 16px;
+  pointer-events: none;
+}
+
 .certificate-card:hover {
-  box-shadow: 0 8px 32px 0 rgba(60,130,246,0.18), 0 1.5px 8px 0 rgba(30,30,31,0.10);
-  border: 1.5px solid #60a5fa;
-  transform: scale(1.035);
-  background: #232a36;
+  transform: translateY(-8px) scale(1.02);
+  border-color: rgba(96, 165, 250, 0.3);
+  box-shadow: 
+    0 20px 60px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(96, 165, 250, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  background: rgba(96, 165, 250, 0.08);
+}
+
+/* Focus states for accessibility */
+.certificate-card:focus-within {
+  outline: 2px solid rgba(96, 165, 250, 0.5);
+  outline-offset: 2px;
 }
 
 .card-image {
   width: 100%;
-  aspect-ratio: 16/10;
-  background: #18181b;
+  height: 160px;
+  background: rgba(0, 0, 0, 0.2);
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  border-bottom: 1px solid #34344a;
+  position: relative;
+  flex-shrink: 0;
 }
+
+.card-image::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(to right, 
+    transparent 0%, 
+    rgba(255, 255, 255, 0.1) 50%, 
+    transparent 100%);
+}
+
 .card-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.4s cubic-bezier(.4,2,.6,1);
+  object-position: center;
+  transition: transform 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+  filter: brightness(0.95) contrast(1.05);
+  padding: 8px;
 }
+
 .certificate-card:hover .card-image img {
-  transform: scale(1.07);
+  transform: scale(1.1);
+  filter: brightness(1) contrast(1.2);
+}
+
+/* Image fallback styling */
+.image-fallback {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.8rem;
+  gap: 8px;
+}
+
+.fallback-icon {
+  width: 32px;
+  height: 32px;
+  stroke: rgba(255, 255, 255, 0.4);
 }
 
 .card-body {
+  flex: 1;
   display: flex;
   flex-direction: column;
-  flex: 1 1 auto;
-  height: 100%;
-  padding: 8px 10px 6px 10px;
+  justify-content: space-between;
+  padding: 20px 20px;
+  position: relative;
+  z-index: 2;
+  min-height: 0;
 }
+
 .card-content {
   flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-height: 0;
+  overflow: hidden;
 }
+
 .card-title {
-  font-size: 1.08rem;
+  font-size: 1.1rem;
   font-weight: 600;
-  color: #e2e8f0;
-  margin-bottom: 8px;
-  margin-top: 2px;
+  color: rgba(255, 255, 255, 0.95);
   line-height: 1.3;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+  max-height: 2.6em; /* 2 lines */
 }
-.issuer-info {
-  font-size: 0.78rem;
-  color: #b3b3b3;
-  margin-bottom: 6px;
-}
-.topics-info {
+
+.cert-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   font-size: 0.85rem;
-  color: #7dd3fc;
-  margin-bottom: 12px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.issuer {
+  font-weight: 500;
+  color: rgba(96, 165, 250, 0.8);
+}
+
+.date::before {
+  content: '•';
+  margin-right: 8px;
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.topics {
+  font-size: 0.85rem;
+  color: rgba(125, 211, 252, 0.9);
+  font-weight: 500;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.3;
+  flex: 1;
+  max-height: 2.6em; /* 2 lines */
 }
 
 .view-credential-btn {
   display: flex;
   align-items: center;
-  justify-content: flex-start;
-  gap: 6px;
-  background: transparent;
-  color: #60a5fa;
-  font-size: 1.05rem;
-  font-weight: 600;
-  border: none;
-  width: 100%;
-  margin: 0;
-  border-radius: 0 0 18px 18px;
-  padding: 14px 18px 14px 18px;
-  box-shadow: none;
-  transition: background 0.18s, color 0.18s;
+  justify-content: space-between;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  color: rgba(96, 165, 250, 0.9);
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: 12px 16px;
   text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.320, 1);
+  margin-top: 16px;
   position: relative;
-}
-.view-credential-btn:focus {
-  outline: 2px solid #60a5fa;
-}
-.certificate-card:hover .view-credential-btn,
-.view-credential-btn:hover {
-  background: rgba(96, 165, 250, 0.08);
-  color: #93c5fd;
-}
-.view-credential-btn .icon {
-  min-width: 20px;
-  width: 20px;
-  height: 20px;
-  margin-left: 2px;
-  transition: transform 0.3s, opacity 0.3s;
-  transform: translateX(-8px);
-  opacity: 0;
-}
-.certificate-card:hover .view-credential-btn .icon,
-.view-credential-btn:hover .icon {
-  transform: translateX(0);
-  opacity: 1;
+  overflow: hidden;
+  flex-shrink: 0;
 }
 
-.sr-only:not(:focus):not(:active) {
-  clip: rect(0 0 0 0); 
-  clip-path: inset(50%);
-  height: 1px;
-  overflow: hidden;
+.view-credential-btn::before {
+  content: '';
   position: absolute;
-  white-space: nowrap; 
-  width: 1px;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transition: left 0.5s;
+}
+
+.view-credential-btn:hover::before {
+  left: 100%;
+}
+
+.view-credential-btn:hover,
+.view-credential-btn:focus {
+  background: rgba(96, 165, 250, 0.15);
+  border-color: rgba(96, 165, 250, 0.3);
+  color: rgba(147, 197, 253, 1);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(96, 165, 250, 0.2);
+  outline: none;
+}
+
+.view-credential-btn .icon {
+  width: 16px;
+  height: 16px;
+  transition: transform 0.3s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+.view-credential-btn:hover .icon,
+.view-credential-btn:focus .icon {
+  transform: translateX(2px);
 }
 
 /* Staggered smooth fade-in animation */
 @keyframes fadeinSmooth {
   0% {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(30px) scale(0.95);
   }
   100% {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
   }
 }
+
 .fadein-smooth {
   opacity: 0;
-  animation: fadeinSmooth 0.8s cubic-bezier(.4,2,.6,1) forwards;
+  animation: fadeinSmooth 0.8s cubic-bezier(0.23, 1, 0.320, 1) forwards;
+}
+
+/* Respect user's motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .certificate-card,
+  .card-image img,
+  .view-credential-btn,
+  .view-credential-btn .icon,
+  .view-credential-btn::before {
+    transition: none;
+    animation: none;
+  }
+  
+  .certificate-card:hover {
+    transform: none;
+  }
+  
+  .certificate-card:hover .card-image img {
+    transform: none;
+  }
+  
+  .view-credential-btn:hover,
+  .view-credential-btn:focus {
+    transform: none;
+  }
+  
+  .view-credential-btn:hover .icon,
+  .view-credential-btn:focus .icon {
+    transform: none;
+  }
+  
+  .view-credential-btn::before {
+    display: none;
+  }
 }
 
 @media screen and (max-width: 768px) {
   .certificates-container {
     grid-template-columns: 1fr;
-    gap: 18px;
+    gap: 16px;
+    padding: 0 8px;
   }
+  
   .certificate-card {
-    min-height: 140px;
+    height: 340px;
   }
+  
+  .card-image {
+    height: 140px;
+  }
+  
   .card-body {
-    padding: 6px 6px 4px 6px;
+    padding: 14px 16px;
   }
+  
+  .card-title {
+    font-size: 0.9rem;
+    -webkit-line-clamp: 2;
+  }
+  
+  .cert-meta {
+    font-size: 0.7rem;
+  }
+  
+  .topics {
+    font-size: 0.7rem;
+  }
+  
   .view-credential-btn {
-    padding: 6px 8px 6px 8px;
-    font-size: 0.93rem;
+    font-size: 0.75rem;
+    padding: 10px 12px;
+  }
+  
+  .view-credential-btn .icon {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .certificate-card {
+    height: auto;
+    min-height: 240px;
+  }
+  
+  .card-image {
+    height: 100px;
+  }
+  
+  .card-body {
+    padding: 12px 16px 16px;
   }
 }
 </style>

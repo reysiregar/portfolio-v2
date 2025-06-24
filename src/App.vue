@@ -68,7 +68,6 @@
       <div class="flex flex-col h-full">
         <!-- Menu Header -->
         <div class="flex items-center justify-between p-6 border-b border-[#383838]">
-          <span class="text-lg text-blue-300 font-semibold">Menu</span>
           <button @click="closeMobileMenu" class="text-gray-400 hover:text-white" aria-label="Close mobile menu">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>

@@ -49,7 +49,7 @@ export default {
         {
           id: 8,
           name: 'Canva',
-          imageUrl: 'https://www.canva.com/favicon.ico',
+          imageUrl: '/img/canva-icon.svg',
           status: 'Advanced'
         },
         {
@@ -89,6 +89,12 @@ export default {
           name: 'Xampp',
           imageUrl: 'https://www.apachefriends.org/images/xampp-logo-ac950edf.svg',
           status: 'Local Server'
+        },
+        {
+          id: 6,
+          name: 'Postman',
+          imageUrl: '/img/postman-icon.svg',
+          status: 'API Testing'
         }
       ]
     };
@@ -130,7 +136,7 @@ export default {
         <div class="text-2xl font-bold text-white mb-5 fadein-bot title-section flex items-center">
           <div class="h-[1px] w-10 bg-blue-200 md:w-20 aos-init aos-animate" data-aos="zoom-in-left"
             data-aos-duration="600"></div>
-          &nbsp; Tech & Skills
+          &nbsp; Tech & Tools
         </div>
       </header>
       <section>

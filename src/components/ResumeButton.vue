@@ -51,12 +51,20 @@ export default {
   border: 1px solid #add8e6;
   border-radius: 0.5rem;
   text-decoration: none;
-  transition: background-color 0.3s, color 0.3s, transform 0.2s;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
 }
 
 .resume-button:hover {
   background-color: rgba(173, 216, 230, 0.1);
   transform: translateY(-2px);
+  box-shadow: 
+    0 0 10px rgba(173, 216, 230, 0.3),
+    0 0 20px rgba(173, 216, 230, 0.2),
+    0 0 30px rgba(173, 216, 230, 0.1);
+  text-shadow: 0 0 8px rgba(173, 216, 230, 0.5);
+  border-color: rgba(173, 216, 230, 0.8);
 }
 
 .resume-button:focus {
@@ -68,6 +76,11 @@ export default {
   margin-right: 0.5rem;
   width: 1rem;
   height: 1rem;
+  transition: filter 0.3s ease;
+}
+
+.resume-button:hover .icon {
+  filter: drop-shadow(0 0 6px rgba(173, 216, 230, 0.6));
 }
 
 @media (min-width: 768px) {

@@ -1,16 +1,16 @@
 <template>
   <main class="mt-6 md:mt-1 flex flex-col-reverse gap-8 items-center md:flex-row md:gap-16 md:justify-center min-h-[65vh] md:min-h-[80vh]">
     <div class="space-y-2 text-center md:text-left px-10">
-      <p :class="['text-blue-200', showContent ? 'animate-fade-up' : 'opacity-0']">Hello World, I'm</p>
-      <h1 :class="['text-4xl font-bold md:text-5xl text-white', showContent ? 'animate-fade-up' : 'opacity-0']">Reynaldi Siregar</h1>
+      <p :class="['text-blue-200 md:text-base lg:text-lg', showContent ? 'animate-fade-up' : 'opacity-0']">Hello World, I'm</p>
+      <h1 :class="['text-4xl font-bold md:text-5xl lg:text-6xl text-white', showContent ? 'animate-fade-up' : 'opacity-0']">Reynaldi Siregar</h1>
       <div class="py-2">
         <TypeWriter 
           :phrases="roles"
           :period="2000"
-          :class="['text-xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-slate-100 to-blue-500 md:text-2xl', showContent ? 'animate-fade-up' : 'opacity-0']"
+          :class="['text-xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-slate-100 to-blue-500 md:text-2xl lg:text-3xl', showContent ? 'animate-fade-up' : 'opacity-0']"
         />
       </div>
-      <p :class="['text-white pr-4', showContent ? 'animate-fade-up' : 'opacity-0']">
+      <p :class="['text-white pr-4 md:text-base lg:text-lg', showContent ? 'animate-fade-up' : 'opacity-0']">
         Welcome to My portfolio website. 
         <span class="wave" role="img" aria-label="Waving hand emoji">👋🏼</span>
       </p>
@@ -27,7 +27,7 @@
         width="300" 
         height="300" 
         decoding="async" 
-        class="w-9/12 md:w-[300px] md:h-auto rounded-full profile-picture" 
+        class="w-9/12 md:w-[320px] lg:w-[350px] md:h-auto rounded-full profile-picture" 
         src="/img/profile.jpg"
       >
     </div>
@@ -70,9 +70,23 @@ export default defineComponent({
   --animation-duration: 0.5s;
   --animation-delay: 500ms;
   --profile-shadow-color: rgba(173, 216, 230, 0.5);
+  --profile-glow-color: rgba(173, 216, 230, 0.8);
 }
 .profile-picture {
-  box-shadow: 0 0 clamp(20px, 5vw, 40px) -5px var(--profile-shadow-color);
+  box-shadow: 
+    0 0 clamp(20px, 5vw, 40px) -5px var(--profile-shadow-color),
+    0 0 clamp(30px, 7vw, 60px) -10px rgba(173, 216, 230, 0.3),
+    0 0 clamp(40px, 9vw, 80px) -15px rgba(173, 216, 230, 0.2);
+  transition: all 0.3s ease;
+}
+
+.profile-picture:hover {
+  box-shadow: 
+    0 0 clamp(25px, 6vw, 50px) -5px var(--profile-glow-color),
+    0 0 clamp(40px, 8vw, 70px) -10px rgba(173, 216, 230, 0.4),
+    0 0 clamp(50px, 10vw, 90px) -15px rgba(173, 216, 230, 0.3),
+    0 0 clamp(60px, 12vw, 100px) -20px rgba(173, 216, 230, 0.2);
+  transform: scale(1.02);
 }
 
 .wave {
