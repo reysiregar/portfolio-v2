@@ -64,6 +64,15 @@ export default {
   perspective: 300px;
   transform-style: preserve-3d;
 }
+
+/* Respect user's motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .atom,
+  .atom .electron,
+  .atom .electron:before {
+    animation: none;
+  }
+}
 .atom:before {
   content: '';
   position: absolute;

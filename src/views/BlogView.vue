@@ -105,4 +105,13 @@ export default {
 .fade-zoom-up {
   animation: fadeZoomUp 1s ease-in-out;
 }
+
+/* Respect user's motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .fade-zoom-up {
+    animation: none;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
 </style>

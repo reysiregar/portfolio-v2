@@ -354,4 +354,91 @@ nav a.router-link-exact-active:hover {
     transform: translateX(0);
   }
 }
+
+/* Fade-in animations for various elements */
+@keyframes fadeinBot {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeinUp {
+  0% {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeinLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Animation classes */
+.fadein-bot {
+  opacity: 0;
+  animation: fadeinBot 0.8s ease-out forwards;
+}
+
+.fadein-up {
+  opacity: 0;
+  animation: fadeinUp 0.8s ease-out forwards;
+}
+
+.fadein-left {
+  opacity: 0;
+  animation: fadeinLeft 0.8s ease-out forwards;
+}
+
+/* Staggered animation delays */
+.fadein-1 {
+  animation-delay: 0.1s;
+}
+
+.fadein-2 {
+  animation-delay: 0.2s;
+}
+
+.fadein-3 {
+  animation-delay: 0.3s;
+}
+
+.fadein-4 {
+  animation-delay: 0.4s;
+}
+
+.fadein-5 {
+  animation-delay: 0.5s;
+}
+
+/* Respect user's motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .fadein-bot,
+  .fadein-up,
+  .fadein-left,
+  .fadein-1,
+  .fadein-2,
+  .fadein-3,
+  .fadein-4,
+  .fadein-5 {
+    animation: none;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
 </style>

@@ -416,6 +416,12 @@ export default {
     animation: none;
   }
   
+  /* Ensure elements are visible even without animations */
+  .fadein-smooth {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  
   .certificate-card:hover {
     transform: none;
   }

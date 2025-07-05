@@ -222,6 +222,16 @@ export default {
   animation-delay: 800ms;
 }
 
+/* Respect user's motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .fadein-left,
+  .fadeins-1,
+  .fadeins-2 {
+    animation: none;
+    opacity: 1 !important;
+  }
+}
+
 .img-tech,
 .tech {
   transition: transform 0.3s ease;

@@ -172,6 +172,15 @@ export default {
   animation: fadeZoomOut 0.8s ease-in-out;
 }
 
+/* Respect user's motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .fade-zoom-out {
+    animation: none;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
 .contact {
   background: #141414;
   color: #ffffff;
