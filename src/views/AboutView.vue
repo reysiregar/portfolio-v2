@@ -47,12 +47,6 @@ export default {
           status: 'Beginner'
         },
         {
-          id: 8,
-          name: 'Canva',
-          imageUrl: '/img/canva-icon.svg',
-          status: 'Advanced'
-        },
-        {
           id: 9,
           name: 'WordPress',
           imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/9/98/WordPress_blue_logo.svg',
@@ -95,6 +89,30 @@ export default {
           name: 'Postman',
           imageUrl: '/img/postman-icon.svg',
           status: 'API Testing'
+        },
+        {
+          id: 7,
+          name: 'Canva',
+          imageUrl: '/img/canva-icon.svg',
+          status: 'Advanced'
+        }
+      ],
+      education: [
+        {
+          id: 1,
+          institution: 'SMA Negeri 9 Kota Bekasi',
+          period: 'July 2020 - Graduated 2023'
+        },
+        {
+          id: 2,
+          institution: 'Gunadarma University',
+          period: 'September 2023 - Present'
+        }
+      ],
+      career: [
+        {
+          id: 1,
+          description: "I don't currently have job experience and am happily looking for it."
         }
       ]
     };
@@ -125,6 +143,51 @@ export default {
           <p class="mb-3 fadein-left fadeins-2">
             &nbsp; &nbsp; &nbsp; I take pride in writing clean, efficient code and staying up-to-date with the latest web technologies to ensure top-tier performance and user experience. My goal is to create websites that not only stand out but also provide effortless navigation and interaction. I'm excited to collaborate with businesses and individuals to transform their visions into high-quality digital experiences. Let's build something amazing together!
           </p>
+        </div>
+      </section>
+    </article>
+  </div>
+
+  <!-- Education Timeline -->
+  <div class="px-5 py-5 md:px-12 md:py-6 text-left text-blue-50 mx-3">
+    <article>
+      <header>
+        <div class="text-xl font-bold text-white mb-4 fadein-bot flex items-center">
+          <div class="h-[1px] w-8 bg-blue-200 md:w-16 aos-init aos-animate" data-aos="zoom-in-left" data-aos-duration="600"></div>
+          &nbsp; Education
+        </div>
+      </header>
+      <section>
+        <div class="timeline-cards">
+          <div v-for="item in education" :key="item.id" class="timeline-card">
+            <div class="timeline-icon bg-blue-200 text-blue-800">🎓</div>
+            <div class="timeline-card-content">
+              <div class="font-semibold text-blue-100">{{ item.institution }}</div>
+              <div class="text-xs text-blue-300">{{ item.period }}</div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </article>
+  </div>
+
+  <!-- Career Timeline -->
+  <div class="px-5 py-5 md:px-12 md:py-6 text-left text-blue-50 mx-3">
+    <article>
+      <header>
+        <div class="text-xl font-bold text-white mb-4 fadein-bot flex items-center">
+          <div class="h-[1px] w-8 bg-blue-200 md:w-16 aos-init aos-animate" data-aos="zoom-in-left" data-aos-duration="600"></div>
+          &nbsp; Career
+        </div>
+      </header>
+      <section>
+        <div class="timeline-cards">
+          <div v-for="item in career" :key="item.id" class="timeline-card">
+            <div class="timeline-icon bg-blue-200 text-blue-800">💼</div>
+            <div class="timeline-card-content">
+              <div class="font-semibold text-blue-100">{{ item.description }}</div>
+            </div>
+          </div>
         </div>
       </section>
     </article>
@@ -247,5 +310,67 @@ export default {
 
 .item-tech:hover .status-tech {
   opacity: 1;
+}
+
+.timeline {
+  position: relative;
+  margin-left: 1.5rem;
+  padding-left: 1.5rem;
+  border-left: 2px solid #a5b4fc;
+}
+.timeline-item {
+  position: relative;
+  margin-bottom: 1.5rem;
+  padding-left: 0.5rem;
+}
+.timeline-dot {
+  position: absolute;
+  left: -1.1rem;
+  top: 0.3rem;
+  width: 0.8rem;
+  height: 0.8rem;
+  background: #a5b4fc;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  box-shadow: 0 0 0 2px #a5b4fc;
+}
+.timeline-content {
+  margin-left: 0.5rem;
+}
+.timeline-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  max-width: 700px;
+  width: 100%;
+}
+.timeline-card {
+  display: flex;
+  align-items: center;
+  background: transparent;
+  border: 1px solid #bfdbfe; /* Tailwind's blue-200 */
+  border-radius: 0.3rem;
+  padding: 1rem 1.25rem;
+  box-shadow: none;
+  transition: box-shadow 0.2s;
+}
+.timeline-card:hover {
+  box-shadow: none;
+}
+.timeline-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  font-size: 1.5rem;
+  border-radius: 50%;
+  margin-right: 1rem;
+  background: #bfdbfe;
+  color: #232336;
+  box-shadow: 0 0 0 2px #bfdbfe;
+}
+.timeline-card-content {
+  flex: 1;
 }
 </style>
