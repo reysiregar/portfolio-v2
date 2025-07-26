@@ -14,7 +14,8 @@
               </div>
               <div>
                 <div class="w-20 h-20 md:w-28 flex items-center md:h-28">
-                  <img :src="article.image" class="rounded-lg md:rounded-xl" alt="">
+                  <div v-if="article.imageLoading" class="w-full aspect-video bg-gray-700 rounded-xl animate-pulse"></div>
+                  <img v-show="!article.imageLoading" @load="article.imageLoading = false" :src="article.image" class="rounded-lg md:rounded-xl" :alt="article.title">
                 </div>
               </div>
             </a>

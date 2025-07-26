@@ -54,7 +54,8 @@ export default {
               <div
                 class="item-card flex flex-col items-center gap-2 rounded bg-[#1e1e1f] hover:bg-[#282828] border border-[#383838] rounded-xl text-blue-50 md:gap-3 px-5 py-5 lg:px-5 ">
                 <div class="flex h-12 w-12 items-center justify-center p-0 h-full w-full lg:p-0 zoom-in">
-                  <img alt="HTML" decoding="async" data-nimg="1" class="drop-shadow-xl rounded rounded-xl"
+                  <div v-if="item.imageLoading" class="w-full aspect-video bg-gray-700 rounded-xl animate-pulse"></div>
+                  <img v-show="!item.imageLoading" @load="item.imageLoading = false" :alt="item.name" decoding="async" data-nimg="1" class="drop-shadow-xl rounded rounded-xl"
                     :src="'/img/portfolio-' + item.imageUrl + '.png'">
                 </div>
                 <div class="w-full flex flex-col gap-2 items-center text-sm md:text-base lg:text-lg">

@@ -97,22 +97,23 @@ export default {
           status: 'Advanced'
         }
       ],
-      education: [
+      timeline: [
         {
           id: 1,
+          type: 'education',
           institution: 'SMA Negeri 9 Kota Bekasi',
           period: 'July 2020 - Graduated 2023'
         },
         {
           id: 2,
+          type: 'education',
           institution: 'Gunadarma University',
           period: 'September 2023 - Present'
-        }
-      ],
-      career: [
+        },
         {
-          id: 1,
-          description: "I don't currently have job experience and am happily looking for it."
+          id: 3,
+          type: 'career',
+          description: "Unemployed, actively seeking opportunities in web development."
         }
       ]
     };
@@ -148,45 +149,24 @@ export default {
     </article>
   </div>
 
-  <!-- Education Timeline -->
-  <div class="px-5 py-5 md:px-12 md:py-6 text-left text-blue-50 mx-3">
+  <div class="px-5 py-5 md:px-12 md:py-10 text-left text-blue-50 mx-3">
     <article>
       <header>
-        <div class="text-xl font-bold text-white mb-4 fadein-bot flex items-center">
-          <div class="h-[1px] w-8 bg-blue-200 md:w-16 aos-init aos-animate" data-aos="zoom-in-left" data-aos-duration="600"></div>
-          &nbsp; Education
+        <div class="text-2xl font-bold text-white mb-10 fadein-bot title-section flex items-center">
+          <div class="h-[1px] w-10 bg-blue-200 md:w-20 aos-init aos-animate" data-aos="zoom-in-left" data-aos-duration="600"></div>
+          &nbsp; My Journey
         </div>
       </header>
-      <section>
-        <div class="timeline-cards">
-          <div v-for="item in education" :key="item.id" class="timeline-card">
-            <div class="timeline-icon bg-blue-200 text-blue-800">🎓</div>
-            <div class="timeline-card-content">
-              <div class="font-semibold text-blue-100">{{ item.institution }}</div>
-              <div class="text-xs text-blue-300">{{ item.period }}</div>
-            </div>
+      <section class="timeline-container-compact">
+        <div v-for="item in timeline" :key="item.id" class="timeline-item-compact">
+          <div class="timeline-icon-compact">
+             <span v-if="item.type === 'education'">🎓</span>
+             <span v-else>💼</span>
           </div>
-        </div>
-      </section>
-    </article>
-  </div>
-
-  <!-- Career Timeline -->
-  <div class="px-5 py-5 md:px-12 md:py-6 text-left text-blue-50 mx-3">
-    <article>
-      <header>
-        <div class="text-xl font-bold text-white mb-4 fadein-bot flex items-center">
-          <div class="h-[1px] w-8 bg-blue-200 md:w-16 aos-init aos-animate" data-aos="zoom-in-left" data-aos-duration="600"></div>
-          &nbsp; Career
-        </div>
-      </header>
-      <section>
-        <div class="timeline-cards">
-          <div v-for="item in career" :key="item.id" class="timeline-card">
-            <div class="timeline-icon bg-blue-200 text-blue-800">💼</div>
-            <div class="timeline-card-content">
-              <div class="font-semibold text-blue-100">{{ item.description }}</div>
-            </div>
+          <div class="timeline-content-compact">
+              <div v-if="item.type === 'education'" class="font-semibold text-blue-100">{{ item.institution }}</div>
+              <div v-if="item.type === 'education'" class="text-xs text-blue-300">{{ item.period }}</div>
+              <div v-if="item.type === 'career'" class="text-base text-blue-100">{{ item.description }}</div>
           </div>
         </div>
       </section>
@@ -372,5 +352,74 @@ export default {
 }
 .timeline-card-content {
   flex: 1;
+}
+
+.timeline-container-compact {
+  position: relative;
+  max-width: 700px;
+  margin: 0;
+  padding-left: 60px; 
+}
+
+.timeline-container-compact::before {
+  content: '';
+  position: absolute;
+  left: 20px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background-color: #4a5568;
+}
+
+.timeline-item-compact {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.timeline-icon-compact {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #2d3748;
+  border: 2px solid #4a5568;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  color: #cbd5e0;
+}
+
+.timeline-content-compact {
+  padding: 15px 20px;
+  background-color: transparent;
+  border-radius: 8px;
+  border: 1px solid #4a5568;
+  margin-left: 60px;
+  transition: background-color 0.3s ease;
+}
+
+.timeline-content-compact:hover {
+  background-color: rgba(59, 130, 246, 0.1);
+}
+
+@media (max-width: 768px) {
+  .timeline-container-compact {
+    padding-left: 40px;
+  }
+
+  .timeline-icon-compact {
+    left: -15px;
+    width: 30px;
+    height: 30px;
+    font-size: 1rem;
+  }
+
+  .timeline-content-compact {
+    margin-left: 40px;
+  }
 }
 </style>

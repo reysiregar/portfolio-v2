@@ -99,7 +99,10 @@ export default {
           :style="{ animationDelay: (0.12 * idx) + 's' }"
         >
           <div class="card-image">
+            <div v-if="cert.imageLoading" class="w-full aspect-video bg-gray-700 rounded-xl animate-pulse"></div>
             <img 
+              v-show="!cert.imageLoading"
+              @load="cert.imageLoading = false"
               :alt="cert.name" 
               decoding="async"
               :src="'/img/certificates/' + cert.imageUrl + '.jpg'"
