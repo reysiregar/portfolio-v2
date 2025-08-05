@@ -1,13 +1,20 @@
 <script>
+import SkeletonCard from '@/components/SkeletonCard.vue';
+
 export default {
+  components: {
+    SkeletonCard
+  },
   data() {
     return {
       activeTab: 1,
+      loading: true,
       items: [
         {
           id: 1,
           name: 'Portfolio Website',
           imageUrl: 'portfolio-v2',
+          imageLoading: true,
           status: 'I created my portfolio website to showcase my profile, skills, and projects, while also providing a space to implement and refine my web development expertise.',
           tech: 'VueJS 3, Tailwind',
           github: 'https://github.com/reysiregar/portfolio-v2',
@@ -17,6 +24,7 @@ export default {
           id: 2,
           name: 'Christmas Invitation',
           imageUrl: 'portfolio-v1',
+          imageLoading: true,
           status: 'Website of Christmas Invitation for My Church, giving guest the Event details like location, date & time, etc. (Private Project -> Wanna have the code? Contact me for more information.)',
           tech: 'JavaScript, SCSS',
           github: 'https://github.com/reysiregar/portfolio-v2',
@@ -26,6 +34,7 @@ export default {
           id: 3,
           name: 'Church Community Website',
           imageUrl: 'portfolio-v3',
+          imageLoading: true,
           status: 'I created this website for my church community to provide information about the community, events, church services, and other relevant information.',
           tech: 'HTML, CSS, JavaScript',
           github: 'https://github.com/reysiregar/nhkbpmj',
@@ -33,6 +42,12 @@ export default {
         }
       ]
     };
+  },
+  mounted() {
+    // Simulate loading delay (you can replace this with your actual data fetching logic)
+    setTimeout(() => {
+      this.loading = false;
+    }, 1500);
   }
 }
 </script>
@@ -50,23 +65,31 @@ export default {
       <section>
         <div>
           <div class="grid grid-cols-1 gap-4 pb-32 md:grid-cols-3 md:gap-3 xl:grid-cols-3 xl:gap-3 2xl:gap-5 fade-zoom-in">
-            <div v-for="item in items" :key="item.id">
+            <!-- Skeleton Loaders -->
+            <template v-if="loading">
+              <div v-for="n in 3" :key="`skeleton-${n}`" class="h-full">
+                <SkeletonCard />
+              </div>
+            </template>
+            
+            <!-- Actual Project Cards -->
+            <div v-else v-for="item in items" :key="item.id" class="h-full">
               <div
-                class="item-card flex flex-col items-center gap-2 rounded bg-[#1e1e1f] hover:bg-[#282828] border border-[#383838] rounded-xl text-blue-50 md:gap-3 px-5 py-5 lg:px-5 ">
+                class="item-card flex flex-col items-center gap-2 rounded bg-[#1e1e1f] hover:bg-[#282828] border border-[#383838] rounded-xl text-blue-50 md:gap-3 px-5 py-5 lg:px-5 h-full">
                 <div class="flex h-12 w-12 items-center justify-center p-0 h-full w-full lg:p-0 zoom-in">
                   <div v-if="item.imageLoading" class="w-full aspect-video bg-gray-700 rounded-xl animate-pulse"></div>
                   <img v-show="!item.imageLoading" @load="item.imageLoading = false" :alt="item.name" decoding="async" data-nimg="1" class="drop-shadow-xl rounded rounded-xl"
                     :src="'/img/portfolio-' + item.imageUrl + '.png'">
                 </div>
-                <div class="w-full flex flex-col gap-2 items-center text-sm md:text-base lg:text-lg">
+                <div class="w-full flex flex-col gap-2 items-center text-sm md:text-base lg:text-lg flex-grow">
                   <div class="title-text font-medium text-secondary">{{ item.name }}
                   </div>
                   <div class="w-full text-left text-[10px] text-[#c1c1c1] md:text-xs lg:text-sm">
                     {{ item.status }}</div>
-                  <div class="w-full mt-4 text-normal text-sm text-left text-blue-200">
+                  <div class="w-full mt-auto pt-4 text-normal text-sm text-left text-blue-200">
                     {{ item.tech }}
                   </div>
-                  <div class="w-full flex justify-end">
+                  <div class="w-full flex justify-end mt-2">
                     <div class="flex cursor-pointer items-end gap-2 text-primary">
                       <a v-if="item.github !== 'null'"
                         :href="item.github" target="_blank" rel="noreferrer"
