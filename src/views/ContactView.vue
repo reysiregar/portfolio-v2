@@ -2,10 +2,10 @@
   <transition name="fadeZoomOut">
     <section class="contact fade-zoom-out">
       <div class="container">
-        <h1 class="contact-title">Let's Connect!</h1>
+        <h1 class="contact-title">Let's connect!</h1>
         <p class="contact-description">
-          Send me a message and be sure to include your email,<br>
-          so I can reach out if needed.
+          Drop me a message if you have any questions,<br>
+          leave your email as well so I can reach out if needed.
         </p>
         <form class="contact-form" @submit.prevent="sendMessage">
           <div class="input-wrapper">
@@ -285,7 +285,6 @@ export default {
   width: 45px;
   height: 45px;
   border-radius: 50%;
-  background-color: #1e90ff;
   color: white;
   font-size: 1.5rem;
   transition: all 0.3s ease;
@@ -305,7 +304,7 @@ export default {
   align-items: center;
   justify-content: center;
   gap: 15px;
-  margin-top: 10px;
+  margin-top: 2px;
 }
 
 .captcha-label {
@@ -323,11 +322,13 @@ export default {
 .input-field[type=number]::-webkit-inner-spin-button,
 .input-field[type=number]::-webkit-outer-spin-button {
   -webkit-appearance: none;
+  appearance: none;
   margin: 0;
 }
 
 .input-field[type=number] {
   -moz-appearance: textfield;
+  appearance: textfield;
 }
 
 @media (max-width: 768px) {

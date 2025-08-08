@@ -94,7 +94,13 @@ export default {
           id: 7,
           name: 'Canva',
           imageUrl: '/img/canva-icon.svg',
-          status: 'Advanced'
+          status: 'Design'
+        },
+        {
+          id: 8,
+          name: 'Docker',
+          imageUrl: '/img/docker-icon.svg',
+          status: 'Containerization'
         }
       ],
       timeline: [
@@ -113,13 +119,16 @@ export default {
         {
           id: 3,
           type: 'career',
-          description: "I'm actively looking for job opportunity. Hire me plzz :D"
+          institution: 'PT. Royal Trust',
+          period: 'August 2025 - Present',
+          role: "Data Entry",
+          description: "Responsible for data management and entry into the company's database."
         },
         {
           id: 4,
           type: 'education',
           institution: 'ASAH Program by Dicoding',
-          period: 'September 2025 - December 2025'
+          period: 'August 2025 - Present'
         }
       ]
     };
@@ -166,14 +175,16 @@ export default {
             <img src="img/suitcase.png" alt="Work" class="w-6 h-6"
                 style="filter: invert(41%) sepia(96%) saturate(448%) hue-rotate(92deg) brightness(94%) contrast(89%);" />
           </div>
-          <h2 class="text-2xl font-bold text-green-400">Work Experience</h2>
+          <h2 class="text-2xl font-bold text-green-400">Experience</h2>
         </div>
         <div class="space-y-6">
           <div v-for="item in timeline.filter(t => t.type === 'career')" 
               :key="item.id" 
               class="note-box-green text-left">
-            <h3 class="text-lg font-semibold">{{ item.description }}</h3>
-            <p v-if="item.period" class="text-sm opacity-80">{{ item.period }}</p>
+            <h3 class="text-lg font-semibold">{{ item.role }}</h3>
+            <p v-if="item.institution" class="text-base font-medium text-green-300 mt-1 mb-1">{{ item.institution }}</p>
+            <p v-if="item.period" class="text-sm opacity-80 mb-2">{{ item.period }}</p>
+            <p v-if="item.description" class="text-sm opacity-80 mt-2">{{ item.description }}</p>
           </div>
         </div>
       </div>
