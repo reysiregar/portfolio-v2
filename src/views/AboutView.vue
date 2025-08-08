@@ -113,7 +113,13 @@ export default {
         {
           id: 3,
           type: 'career',
-          description: "Unemployed, actively seeking opportunities in web development."
+          description: "I'm actively looking for job opportunity. Hire me plzz :D"
+        },
+        {
+          id: 4,
+          type: 'education',
+          institution: 'ASAH Program by Dicoding',
+          period: 'September 2025 - December 2025'
         }
       ]
     };
@@ -149,29 +155,50 @@ export default {
     </article>
   </div>
 
-  <div class="px-5 py-5 md:px-12 md:py-10 text-left text-blue-50 mx-3">
-    <article>
-      <header>
-        <div class="text-2xl font-bold text-white mb-10 fadein-bot title-section flex items-center">
-          <div class="h-[1px] w-10 bg-blue-200 md:w-20 aos-init aos-animate" data-aos="zoom-in-left" data-aos-duration="600"></div>
-          &nbsp; My Journey
-        </div>
-      </header>
-      <section class="timeline-container-compact">
-        <div v-for="item in timeline" :key="item.id" class="timeline-item-compact">
-          <div class="timeline-icon-compact">
-             <span v-if="item.type === 'education'">🎓</span>
-             <span v-else>💼</span>
+  <!-- My Journey Section -->
+  <section class="my-journey py-12 px-5 md:px-12 text-blue-50">
+    <div class="container mx-auto grid md:grid-cols-2 gap-12">
+      
+      <!-- Career / Work Experience -->
+      <div>
+        <div class="flex items-center mb-8">
+          <div class="bg-green-500/10 p-2 rounded-full mr-3">
+            <img src="img/suitcase.png" alt="Work" class="w-6 h-6"
+                style="filter: invert(41%) sepia(96%) saturate(448%) hue-rotate(92deg) brightness(94%) contrast(89%);" />
           </div>
-          <div class="timeline-content-compact">
-              <div v-if="item.type === 'education'" class="font-semibold text-blue-100">{{ item.institution }}</div>
-              <div v-if="item.type === 'education'" class="text-xs text-blue-300">{{ item.period }}</div>
-              <div v-if="item.type === 'career'" class="text-base text-blue-100">{{ item.description }}</div>
+          <h2 class="text-2xl font-bold text-green-400">Work Experience</h2>
+        </div>
+        <div class="space-y-6">
+          <div v-for="item in timeline.filter(t => t.type === 'career')" 
+              :key="item.id" 
+              class="note-box-green text-left">
+            <h3 class="text-lg font-semibold">{{ item.description }}</h3>
+            <p v-if="item.period" class="text-sm opacity-80">{{ item.period }}</p>
           </div>
         </div>
-      </section>
-    </article>
-  </div>
+      </div>
+
+      <!-- Education -->
+      <div>
+        <div class="flex items-center mb-8">
+          <div class="bg-blue-500/10 p-2 rounded-full mr-3">
+            <img src="img/graduate-hat.png" alt="Education" class="w-6 h-6"
+                style="filter: invert(35%) sepia(93%) saturate(574%) hue-rotate(189deg) brightness(92%) contrast(89%);" />
+          </div>
+          <h2 class="text-2xl font-bold text-blue-400">Education</h2>
+        </div>
+        <div class="space-y-6">
+          <div v-for="item in timeline.filter(t => t.type === 'education')" 
+              :key="item.id" 
+              class="note-box-blue text-left">
+            <h3 class="text-lg font-semibold">{{ item.institution }}</h3>
+            <p class="text-sm opacity-80">{{ item.period }}</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
 
   <div class="px-5 py-5 md:px-12 md:py-10 text-left text-blue-50 mx-3">
     <article data-page="about">
@@ -404,6 +431,24 @@ export default {
 
 .timeline-content-compact:hover {
   background-color: rgba(59, 130, 246, 0.1);
+}
+
+.note-box-blue {
+  background-color: rgba(0, 102, 204, 0.1); /* transparent blue background */
+  border-left: 6px solid #0066cc;
+  padding: 1rem 1.5rem;
+  color: white;
+  font-family: Arial, sans-serif;
+  border-radius: 4px;
+}
+
+.note-box-green {
+  background-color: rgba(0, 204, 102, 0.1); /* transparent green background */
+  border-left: 6px solid #00cc66;
+  padding: 1rem 1.5rem;
+  color: white;
+  font-family: Arial, sans-serif;
+  border-radius: 4px;
 }
 
 @media (max-width: 768px) {
